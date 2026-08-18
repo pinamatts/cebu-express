@@ -3,750 +3,896 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cebu Express | FedEx Acceptance Center – Cebu, Philippines</title>
-  <meta name="description" content="Cebu Express — FedEx Acceptance Center in Cebu. International & domestic shipping, bills payment, ticketing, visa assistance. Branches in Mandaue, Mabolo, Talisay & Consolacion." />
+  <title>Cebu Express | FedEx Authorized Ship Center – Cebu, Philippines</title>
+  <meta name="description" content="Cebu Express — FedEx Authorized Ship Center in Cebu. International & domestic shipping, same-day Cebu–Manila, bills payment, ticketing, visa assistance. Branches in Mandaue, Mabolo, Talisay & Consolacion." />
+  <meta name="theme-color" content="#0E32D1" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Marks JS as available before first paint, so scroll-reveal only hides
+       content when JS can actually reveal it again. -->
+  <script>document.documentElement.className+=' js';</script>
 
   <style>
 /* ═══════════════════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS — built from the Cebu Express logo
 ═══════════════════════════════════════════════════ */
-:root {
-  /* Brand */
-  --red:      #E02020;
-  --red-d:    #B81A1A;
-  --red-l:    #fff0f0;
-  --red-ll:   #fff8f8;
-  --blue:     #1A4DB8;
-  --blue-d:   #143996;
-  --blue-l:   #EBF1FB;
-  --blue-ll:  #f4f7fd;
+:root{
+  /* Brand — sampled from logo.png */
+  --blue:      #0E32D1;
+  --blue-700:  #0A26A6;
+  --blue-600:  #1B3FDD;
+  --blue-500:  #3557EC;
+  --blue-300:  #8AA0FA;
+  --blue-100:  #E4E9FE;
+  --blue-50:   #F3F5FF;
 
-  /* Neutral */
-  --white:    #ffffff;
-  --bg:       #f8f9fb;
-  --gray-100: #f1f3f6;
-  --gray-200: #e2e6ec;
-  --gray-300: #cbd0da;
-  --gray-400: #9aa3b0;
-  --gray-600: #4a5260;
-  --text:     #0f1623;
-  --muted:    #5a6475;
+  --orange:     #E76529;
+  --orange-600: #C9501A;
+  --orange-400: #F28B54;
+  --orange-300: #F8A87C;
+  --orange-100: #FDECE2;
+  --orange-50:  #FFF6F1;
+
+  /* Ink (dark anchors) */
+  --ink:      #06091A;
+  --ink-900:  #0A0F26;
+  --ink-800:  #121936;
+  --ink-700:  #1C2549;
+
+  /* Neutrals */
+  --white:  #ffffff;
+  --n-50:   #F7F8FC;
+  --n-100:  #EFF1F7;
+  --n-200:  #E3E7F0;
+  --n-300:  #CDD4E2;
+  --n-400:  #98A2B8;
+  --n-500:  #6C7690;
+  --text:   #0B1024;
+  --muted:  #5A647B;
 
   /* Layout */
-  --nav-h:   72px;
-  --max-w:   1160px;
-  --r-sm:    8px;
-  --r:       14px;
-  --r-lg:    20px;
-  --r-xl:    28px;
-  --sh-sm:   0 2px 10px rgba(0,0,0,.07);
-  --sh:      0 4px 24px rgba(0,0,0,.10);
-  --sh-lg:   0 12px 48px rgba(0,0,0,.13);
-  --t:       .2s ease;
+  --nav-h: 74px;
+  --max-w: 1200px;
+
+  /* Radii */
+  --r-xs: 10px;
+  --r-sm: 14px;
+  --r:    18px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+
+  /* Elevation — layered, soft */
+  --sh-xs: 0 1px 2px rgba(11,16,36,.06);
+  --sh-sm: 0 2px 8px rgba(11,16,36,.06), 0 1px 2px rgba(11,16,36,.04);
+  --sh:    0 8px 28px rgba(11,16,36,.09), 0 2px 6px rgba(11,16,36,.05);
+  --sh-lg: 0 20px 60px rgba(11,16,36,.14), 0 6px 16px rgba(11,16,36,.07);
+  --sh-blue: 0 10px 34px rgba(14,50,209,.28);
+  --sh-orange: 0 10px 34px rgba(231,101,41,.30);
+
+  --t: .22s cubic-bezier(.4,0,.2,1);
+  --t-slow: .45s cubic-bezier(.4,0,.2,1);
 }
 
 /* ═══════════════════════════════════════════════════
    RESET
 ═══════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);-webkit-font-smoothing:antialiased}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);-webkit-font-smoothing:antialiased;text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{cursor:pointer;border:none;background:none;font:inherit}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+input{font:inherit}
 ul{list-style:none}
-:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:6px}
+
+h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em;line-height:1.08}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════════════ */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:900;
+  background:linear-gradient(90deg,var(--blue),var(--orange));transition:width .1s linear}
 
 /* ═══════════════════════════════════════════════════
    UTILITIES
 ═══════════════════════════════════════════════════ */
-.wrap{width:100%;max-width:var(--max-w);margin-inline:auto;padding-inline:clamp(1.25rem,5vw,2rem)}
-.sec{padding:clamp(4rem,8vw,6rem) 0}
-.sec-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem}
-.sec-title{font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:800;margin-bottom:.7rem;color:var(--text);line-height:1.15}
-.sec-desc{font-size:.975rem;color:var(--muted);max-width:58ch}
-.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.03em}
-.chip-blue{background:var(--blue-l);color:var(--blue)}
-.chip-red{background:var(--red-l);color:var(--red)}
+.wrap{width:100%;max-width:var(--max-w);margin-inline:auto;padding-inline:clamp(1.25rem,5vw,2.25rem)}
+.sec{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.sec-head{max-width:62ch}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+.eyebrow::before{content:'';width:22px;height:2px;border-radius:2px;background:var(--orange)}
+.eyebrow.on-dark{color:var(--blue-300)}
+.sec-title{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:700;margin-bottom:1rem;color:var(--text)}
+.sec-title.on-dark{color:#fff}
+.sec-desc{font-size:clamp(.98rem,1.6vw,1.08rem);color:var(--muted);max-width:60ch;line-height:1.7}
+.sec-desc.on-dark{color:rgba(255,255,255,.62)}
+.accent{color:var(--orange)}
+.grad-text{background:linear-gradient(100deg,var(--blue-300),#fff 60%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:100px;
+  font-size:.7rem;font-weight:700;letter-spacing:.02em}
+.chip-blue{background:var(--blue-100);color:var(--blue-700)}
+.chip-orange{background:var(--orange-100);color:var(--orange-600)}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;font-size:.88rem;font-weight:700;letter-spacing:.01em;transition:all var(--t);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 28px;
+  border-radius:100px;font-size:.9rem;font-weight:700;letter-spacing:.005em;white-space:nowrap;
+  transition:transform var(--t),box-shadow var(--t),background var(--t),color var(--t),border-color var(--t);
+  position:relative}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
-.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 20px rgba(224,32,32,.32)}
-.btn-red:hover{background:var(--red-d);box-shadow:0 8px 28px rgba(224,32,32,.42)}
-.btn-blue{background:var(--blue);color:#fff;box-shadow:0 4px 20px rgba(26,77,184,.28)}
-.btn-blue:hover{background:var(--blue-d);box-shadow:0 8px 28px rgba(26,77,184,.38)}
-.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:2px solid rgba(255,255,255,.38)}
-.btn-ghost:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.68)}
-.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue)}
-.btn-outline:hover{background:var(--blue);color:#fff}
-.btn-white{background:#fff;color:var(--red);font-weight:800}
-.btn-white:hover{background:#fff3f3}
-.btn-lg{padding:16px 34px;font-size:.975rem}
-.btn-sm{padding:9px 20px;font-size:.8rem}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:var(--sh-blue)}
+.btn-blue:hover{background:var(--blue-600);box-shadow:0 14px 40px rgba(14,50,209,.4)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+.btn-orange:hover{background:var(--orange-600);box-shadow:0 14px 40px rgba(231,101,41,.42)}
+.btn-dark{background:var(--ink-900);color:#fff}
+.btn-dark:hover{background:var(--ink-800)}
+.btn-glass{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.28);backdrop-filter:blur(12px)}
+.btn-glass:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.55)}
+.btn-outline{background:transparent;color:var(--blue);border:1.5px solid var(--n-300)}
+.btn-outline:hover{border-color:var(--blue);background:var(--blue-50)}
+.btn-white{background:#fff;color:var(--blue);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.btn-white:hover{background:var(--blue-50)}
+.btn-lg{padding:17px 34px;font-size:.98rem}
+.btn-sm{padding:10px 20px;font-size:.82rem}
 
-/* Reveal animation */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+/* Reveal — progressive enhancement only.
+   The hidden state is scoped to .js so content still renders if JS fails. */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.js .rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  *{animation:none!important}
+}
 
 /* ═══════════════════════════════════════════════════
    NAV
 ═══════════════════════════════════════════════════ */
-.nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.94);backdrop-filter:blur(22px);border-bottom:1px solid var(--gray-200);transition:box-shadow var(--t)}
-.nav.sc{box-shadow:var(--sh)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);gap:1rem}
+.nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.82);
+  backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid transparent;transition:all var(--t)}
+.nav.sc{border-bottom-color:var(--n-200);box-shadow:0 4px 24px rgba(11,16,36,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);gap:1.25rem}
 
-.nav-brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
-.nav-logo{height:42px;width:auto;object-fit:contain}
-.nav-brand-text strong{display:block;font-size:.85rem;font-weight:900;color:var(--blue);line-height:1.2}
-.nav-brand-text span{font-size:.68rem;color:var(--muted);font-weight:500}
+.nav-brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;flex-shrink:0;
+  box-shadow:0 3px 12px rgba(14,50,209,.28)}
+.nav-logo img{width:100%;height:100%;object-fit:cover}
+.nav-brand-text strong{display:block;font-family:'Sora',sans-serif;font-size:.94rem;font-weight:700;
+  color:var(--text);line-height:1.15;letter-spacing:-.02em}
+.nav-brand-text span{font-size:.67rem;color:var(--muted);font-weight:500;letter-spacing:.01em}
 
-.nav-links{display:flex;align-items:center;gap:1px}
-.nav-links a{padding:7px 13px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--muted);transition:color var(--t),background var(--t)}
-.nav-links a:hover{color:var(--text);background:var(--gray-100)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{padding:9px 14px;border-radius:10px;font-size:.875rem;font-weight:500;
+  color:var(--muted);transition:all var(--t);position:relative}
+.nav-links a:hover{color:var(--blue);background:var(--blue-50)}
 
-.nav-cta{display:flex;align-items:center;gap:8px}
+.nav-cta{display:flex;align-items:center;gap:10px}
 
-.hbg{display:none;flex-direction:column;gap:5px;padding:8px;border-radius:8px}
-.hbg span{width:22px;height:2.5px;background:var(--text);border-radius:2px;transition:all .3s;display:block}
+.hbg{display:none;flex-direction:column;gap:5px;padding:9px;border-radius:10px}
+.hbg:hover{background:var(--n-100)}
+.hbg span{width:21px;height:2.5px;background:var(--text);border-radius:2px;transition:all .3s;display:block}
 .hbg.op span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hbg.op span:nth-child(2){opacity:0}
 .hbg.op span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-.mob-draw{display:none;flex-direction:column;border-top:1px solid var(--gray-200);padding:1rem;gap:4px;background:rgba(255,255,255,.98)}
+.mob-draw{display:none;flex-direction:column;border-top:1px solid var(--n-200);
+  padding:1rem 0 1.5rem;gap:3px}
 .mob-draw.op{display:flex}
-.mob-draw a{padding:11px 15px;border-radius:10px;font-size:.92rem;font-weight:500;color:var(--muted);transition:all var(--t)}
-.mob-draw a:hover{background:var(--gray-100);color:var(--text)}
-.mob-draw .btn{width:100%;justify-content:center;margin-top:6px;border-radius:12px}
+.mob-draw a{padding:13px 16px;border-radius:12px;font-size:.95rem;font-weight:500;color:var(--muted);transition:all var(--t)}
+.mob-draw a:hover{background:var(--blue-50);color:var(--blue)}
+.mob-draw .btn{width:100%;margin-top:8px}
 
-@media(max-width:900px){.nav-links{display:none}.hbg{display:flex}.nav-cta{display:none}}
-@media(max-width:400px){.nav-brand-text{display:none}}
+@media(max-width:980px){.nav-links{display:none}.hbg{display:flex}.nav-cta{display:none}}
+@media(max-width:420px){.nav-brand-text span{display:none}}
 
 /* ═══════════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════════ */
-.hero{
-  position:relative;overflow:hidden;
-  padding:clamp(5.5rem,13vw,9rem) 0 clamp(4rem,10vw,7rem);
-  background:#080f2a;
-}
-/* BG image with overlay */
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=70');
-  background-size:cover;background-position:center 35%;
-  opacity:.32;
-}
-.hero-grid-overlay{
-  position:absolute;inset:0;z-index:1;
-  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:46px 46px;
-}
-.hero-glow{
-  position:absolute;right:-6%;top:-10%;z-index:1;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,32,32,.18) 0%,transparent 65%);
-  pointer-events:none;
-}
+.hero{position:relative;overflow:hidden;background:var(--ink);
+  padding:clamp(3.5rem,8vw,6rem) 0 clamp(3.5rem,7vw,5.5rem)}
+/* layered mesh */
+.hero::before{content:'';position:absolute;width:850px;height:850px;right:-15%;top:-45%;
+  background:radial-gradient(circle,rgba(14,50,209,.55) 0%,rgba(14,50,209,0) 62%);pointer-events:none}
+.hero::after{content:'';position:absolute;width:680px;height:680px;left:-18%;bottom:-40%;
+  background:radial-gradient(circle,rgba(231,101,41,.34) 0%,rgba(231,101,41,0) 65%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 78%)}
 .hero-inner{position:relative;z-index:2}
 
-.hero-eye{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);
-  border-radius:100px;padding:6px 16px;
-  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.88);margin-bottom:1.5rem;
-}
-.hero-eye-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0}
-.hero-eye-dot.green{background:#4ade80}
+.hero-grid-2col{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+@media(max-width:940px){.hero-grid-2col{grid-template-columns:1fr;gap:2.75rem}}
 
-.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.03;margin-bottom:1.1rem;max-width:18ch}
-.hero h1 .red{color:#FF4848}
-.hero h1 .blue{color:#6aacff}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:7px 16px 7px 8px;
+  font-size:.72rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.6rem;
+  backdrop-filter:blur(10px)}
+.hero-badge b{display:inline-flex;align-items:center;gap:5px;background:var(--orange);color:#fff;
+  border-radius:100px;padding:3px 10px;font-size:.63rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
 
-.hero-sub{font-size:clamp(.975rem,2.5vw,1.15rem);color:rgba(255,255,255,.72);max-width:50ch;margin-bottom:1.5rem;line-height:1.7}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.5rem);font-weight:700;color:#fff;
+  letter-spacing:-.045em;line-height:1.02;margin-bottom:1.35rem}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,#fff 10%,var(--blue-300) 55%,var(--orange-300) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(1rem,2vw,1.16rem);color:rgba(255,255,255,.66);max-width:48ch;
+  margin-bottom:2rem;line-height:1.72}
 
-/* Branch pills */
-.hero-branches{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.25rem}
-.bp{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:5px 14px;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.88)}
-.bp-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:2.5rem}
+@media(max-width:520px){.hero-ctas .btn{flex:1 1 100%}}
 
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:3.5rem}
+/* branch pills */
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:6px 15px;
+  font-size:.76rem;font-weight:600;color:rgba(255,255,255,.82);transition:all var(--t)}
+.pill:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.3)}
+.pill i{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0}
 
-.hero-stats{display:flex;flex-wrap:wrap;gap:2.5rem;border-top:1px solid rgba(255,255,255,.14);padding-top:2rem}
-.hs strong{display:block;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;color:#fff;line-height:1;margin-bottom:4px}
-.hs span{font-size:.75rem;color:rgba(255,255,255,.55);font-weight:500}
+/* ── Hero tracking card (glass) ── */
+.track-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r-xl);padding:clamp(1.6rem,3vw,2.1rem);backdrop-filter:blur(24px) saturate(150%);
+  box-shadow:0 24px 70px rgba(0,0,0,.42)}
+.track-card h2{font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+.track-card>p{font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:1.35rem;line-height:1.6}
+.track-field{position:relative;margin-bottom:.85rem}
+.track-field svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.4);pointer-events:none}
+.track-in{width:100%;padding:16px 20px 16px 50px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;
+  font-size:.92rem;font-weight:500;transition:all var(--t)}
+.track-in::placeholder{color:rgba(255,255,255,.34);font-weight:400}
+.track-in:focus{outline:none;border-color:var(--orange);background:rgba(255,255,255,.12);
+  box-shadow:0 0 0 4px rgba(231,101,41,.18)}
+.track-card .btn{width:100%}
+.track-foot{display:flex;align-items:center;gap:7px;margin-top:1.1rem;padding-top:1.1rem;
+  border-top:1px solid rgba(255,255,255,.1);font-size:.74rem;color:rgba(255,255,255,.42)}
+.track-foot a{color:var(--blue-300);font-weight:600}
+.track-foot a:hover{color:#fff;text-decoration:underline}
 
-@media(max-width:560px){
-  .hero-ctas .btn{flex:1 1 auto;justify-content:center}
-  .hero-stats{gap:1.5rem}
-}
+/* ── Hero stats strip ── */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:clamp(3rem,6vw,4.5rem);
+  padding-top:clamp(2rem,4vw,2.75rem);border-top:1px solid rgba(255,255,255,.11);position:relative;z-index:2}
+@media(max-width:680px){.hero-stats{grid-template-columns:1fr 1fr;gap:1.75rem}}
+.hstat strong{display:block;font-family:'Sora',sans-serif;font-size:clamp(1.6rem,3.4vw,2.3rem);
+  font-weight:700;color:#fff;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.hstat strong .u{color:var(--orange)}
+.hstat span{font-size:.74rem;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.02em}
 
 /* ═══════════════════════════════════════════════════
-   TRUST BAR
+   MARQUEE TRUST STRIP
 ═══════════════════════════════════════════════════ */
-.trust{background:var(--red);padding:14px 0}
-.trust-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1.2rem 2.5rem}
-.ti{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#fff;letter-spacing:.02em}
-.tdiv{width:1px;height:18px;background:rgba(255,255,255,.28)}
-@media(max-width:540px){.tdiv{display:none}}
+.trust{background:var(--ink-900);border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);padding:16px 0;overflow:hidden}
+.trust-track{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center}
+.ti{display:flex;align-items:center;gap:9px;font-size:.79rem;font-weight:600;color:rgba(255,255,255,.62)}
+.ti svg{color:var(--orange);flex-shrink:0}
 
 /* ═══════════════════════════════════════════════════
    BRANCHES
 ═══════════════════════════════════════════════════ */
-.branches-sec{background:var(--bg)}
-.branches-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2.5rem}
-@media(max-width:1100px){.branches-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.branches-grid{grid-template-columns:1fr}}
+.branches-sec{background:var(--n-50)}
+.branches-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+@media(max-width:1080px){.branches-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.branches-grid{grid-template-columns:1fr}}
 
-.bc{
-  background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r-xl);
-  padding:1.75rem;transition:all var(--t);position:relative;overflow:hidden;
-}
-.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--blue))}
-.bc:hover{border-color:var(--blue);box-shadow:var(--sh-lg);transform:translateY(-3px)}
+.bc{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r-lg);
+  padding:1.7rem 1.6rem;transition:all var(--t);position:relative;overflow:hidden;
+  display:flex;flex-direction:column}
+.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--orange));transform:scaleX(0);transform-origin:left;
+  transition:transform var(--t-slow)}
+.bc:hover{border-color:var(--blue-300);box-shadow:var(--sh-lg);transform:translateY(-4px)}
+.bc:hover::before{transform:scaleX(1)}
 
-.bc-tag{
-  display:inline-flex;align-items:center;gap:5px;
-  background:var(--red-l);color:var(--red);
-  border-radius:100px;padding:3px 10px;
-  font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-  margin-bottom:.75rem;
-}
-.bc-main{background:var(--blue-l);color:var(--blue)}
-.bc-name{font-size:1.1rem;font-weight:900;color:var(--blue);margin-bottom:1.1rem}
+.bc-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:5px;
+  background:var(--n-100);color:var(--muted);border-radius:100px;padding:4px 11px;
+  font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.bc-tag.main{background:var(--blue-100);color:var(--blue-700)}
+.bc-tag.new{background:var(--orange-100);color:var(--orange-600)}
+.bc-name{font-size:1.16rem;font-weight:700;color:var(--text);margin-bottom:1.1rem;letter-spacing:-.025em}
 
-.bc-row{display:flex;gap:9px;align-items:flex-start;margin-bottom:.65rem}
-.bc-icon{font-size:.95rem;flex-shrink:0;margin-top:1px;line-height:1}
-.bc-text{font-size:.82rem;color:var(--muted);line-height:1.5}
+.bc-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:.85rem}
+.bc-ico{color:var(--blue);flex-shrink:0;margin-top:2px}
+.bc-text{font-size:.83rem;color:var(--muted);line-height:1.6}
 .bc-text strong{color:var(--text);font-weight:600}
+.bc-text .fine{font-size:.74rem;color:var(--n-400)}
 
-.bc-ht{width:100%;border-collapse:collapse;margin-top:.35rem}
-.bc-ht td{padding:3.5px 0;font-size:.78rem;border-bottom:1px solid var(--gray-100);color:var(--muted)}
-.bc-ht td:last-child{text-align:right;font-weight:600;color:var(--text)}
-.bc-ht tr.td td{color:var(--red);font-weight:700}
+.bc-ht{width:100%;border-collapse:collapse;margin-top:.2rem}
+.bc-ht td{padding:5px 0;font-size:.78rem;border-bottom:1px solid var(--n-100);color:var(--muted)}
+.bc-ht td:last-child{text-align:right;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
 .bc-ht tr:last-child td{border-bottom:none}
+.bc-ht tr.td td{color:var(--blue);font-weight:700}
+.bc-ht tr.td td:first-child::after{content:'Today';margin-left:7px;font-size:.58rem;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;background:var(--blue);color:#fff;
+  padding:2px 7px;border-radius:100px;vertical-align:middle}
 
-.bc-note{font-size:.7rem;color:var(--gray-400);margin-top:.6rem;font-style:italic}
-.bc-fb{
-  display:inline-flex;align-items:center;gap:7px;margin-top:1.1rem;
-  padding:9px 18px;border-radius:100px;background:var(--blue-l);color:var(--blue);
-  font-size:.78rem;font-weight:700;border:1.5px solid transparent;transition:all var(--t);
-}
-.bc-fb:hover{background:var(--blue);color:#fff}
-.bc-phone{font-size:.78rem;font-weight:700;color:var(--red);margin-top:.5rem;display:flex;align-items:center;gap:5px}
-
-/* ═══════════════════════════════════════════════════
-   TRACK
-═══════════════════════════════════════════════════ */
-.track-sec{background:var(--white)}
-.track-card{
-  background:var(--white);border-radius:var(--r-xl);box-shadow:var(--sh-lg);overflow:hidden;
-  display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--gray-200);
-}
-@media(max-width:680px){.track-card{grid-template-columns:1fr}}
-.track-l{padding:clamp(2rem,5vw,3rem)}
-.track-l h2{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:800;margin-bottom:.5rem}
-.track-l p{font-size:.86rem;color:var(--muted);margin-bottom:1.4rem}
-.track-form{display:flex;gap:9px}
-.track-in{flex:1;padding:13px 20px;border-radius:100px;border:2px solid var(--gray-200);font-size:.86rem;font-family:inherit;color:var(--text);transition:border-color var(--t),box-shadow var(--t)}
-.track-in:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,77,184,.1)}
-.track-in::placeholder{color:var(--gray-400)}
-@media(max-width:440px){.track-form{flex-direction:column}.track-form .btn{justify-content:center}}
-.track-hint{font-size:.7rem;color:var(--gray-400);margin-top:.7rem}
-.track-hint a{color:var(--blue);font-weight:600}
-.track-hint a:hover{text-decoration:underline}
-
-.track-r{background:linear-gradient(140deg,#080f2a 0%,var(--blue) 100%);padding:clamp(2rem,5vw,3rem);display:flex;flex-direction:column;justify-content:center;gap:1.4rem}
-.trb h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.25rem}
-.trb p{font-size:.8rem;color:rgba(255,255,255,.62);margin-bottom:.7rem;line-height:1.55}
-.trl{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:100px;background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.26);color:#fff;font-size:.78rem;font-weight:700;transition:all var(--t);width:fit-content}
-.trl:hover{background:rgba(255,255,255,.23);transform:translateY(-1px)}
-.tr-div{border:none;border-top:1px solid rgba(255,255,255,.13)}
+.bc-note{font-size:.7rem;color:var(--n-400);margin-top:.5rem;font-style:italic}
+.bc-phone{font-size:.79rem;font-weight:600;color:var(--text);margin-top:.9rem;
+  display:flex;align-items:flex-start;gap:7px;line-height:1.55}
+.bc-phone svg{color:var(--orange);flex-shrink:0;margin-top:3px}
+.bc-fb{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 18px;border-radius:100px;background:var(--n-50);color:var(--blue-700);
+  font-size:.79rem;font-weight:700;border:1px solid var(--n-200);transition:all var(--t)}
+.bc-fb:hover{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:var(--sh-blue)}
+/* auto margin pins the CTA to the card floor so all 4 cards align */
+.bc-fb-wrap{margin-top:auto;padding-top:1.2rem;display:flex}
+.bc-fb-wrap .bc-fb{width:100%}
 
 /* ═══════════════════════════════════════════════════
-   SERVICES  (two groups: FedEx Intl + Our Services)
+   SAME DAY  (dark)
 ═══════════════════════════════════════════════════ */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin-top:2.5rem}
-.svc{
-  background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r-lg);padding:1.75rem;
-  transition:all var(--t);position:relative;overflow:hidden;
-}
-.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
-.svc:hover{border-color:var(--blue);box-shadow:var(--sh-lg);transform:translateY(-4px)}
-.svc:hover::after{transform:scaleX(1)}
-.svc-ic{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.4rem}
-.ic-b{background:var(--blue-l)}.ic-r{background:var(--red-l)}
-.svc h3{font-size:.975rem;font-weight:800;margin-bottom:.4rem;color:var(--text)}
-.svc p{font-size:.83rem;color:var(--muted);line-height:1.65}
+.sday-sec{background:var(--ink);position:relative;overflow:hidden;color:#fff}
+.sday-sec::before{content:'';position:absolute;width:760px;height:760px;left:-14%;top:-30%;
+  background:radial-gradient(circle,rgba(14,50,209,.42) 0%,transparent 64%);pointer-events:none}
+.sday-sec::after{content:'';position:absolute;width:620px;height:620px;right:-12%;bottom:-32%;
+  background:radial-gradient(circle,rgba(231,101,41,.28) 0%,transparent 66%);pointer-events:none}
+.sday-inner{position:relative;z-index:2}
 
-/* Domestic services mini-grid */
-.dom-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-@media(max-width:540px){.dom-grid{grid-template-columns:1fr}}
-.dom-card{background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r-lg);padding:1.4rem;transition:all var(--t)}
-.dom-card:hover{border-color:var(--red);box-shadow:var(--sh)}
-.dom-card h4{font-size:.9rem;font-weight:800;margin-bottom:.35rem;color:var(--text)}
-.dom-card p{font-size:.8rem;color:var(--muted);line-height:1.55}
-.dom-card .chip{margin-top:.75rem}
+.sday-top{text-align:center;margin-bottom:3rem}
+.sday-route{display:inline-flex;align-items:center;justify-content:center;gap:clamp(.9rem,3vw,1.75rem);
+  margin-bottom:1rem;flex-wrap:wrap}
+.sday-city{font-family:'Sora',sans-serif;font-size:clamp(2.1rem,6.5vw,3.9rem);font-weight:700;
+  letter-spacing:-.045em;line-height:1;color:#fff}
+.sday-city.alt{background:linear-gradient(100deg,var(--blue-300),var(--orange-300));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.sday-arrow{color:rgba(255,255,255,.32)}
+.sday-sub{font-size:1rem;color:rgba(255,255,255,.56);max-width:56ch;margin:0 auto;line-height:1.7}
+.sday-tags{margin-top:1.25rem;display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem}
+.sday-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:6px 16px;
+  font-size:.75rem;font-weight:600;color:rgba(255,255,255,.78)}
 
-/* More services icon grid */
-.more-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:2rem}
-.more-card{background:var(--blue-ll);border:2px solid var(--blue-l);border-radius:var(--r-lg);padding:1.25rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;transition:all var(--t)}
-.more-card:hover{background:var(--blue-l);border-color:var(--blue);box-shadow:var(--sh)}
-.more-card .ico{font-size:1.8rem}
-.more-card h4{font-size:.82rem;font-weight:700;color:var(--blue)}
+.sday-body{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(1.25rem,3vw,2rem);
+  max-width:1000px;margin:0 auto;align-items:start}
+@media(max-width:860px){.sday-body{grid-template-columns:1fr}}
+
+/* speed options */
+.sday-opts{display:flex;flex-direction:column;gap:1rem}
+@media(max-width:860px){.sday-opts{flex-direction:row}}
+@media(max-width:460px){.sday-opts{flex-direction:column}}
+.sday-opt{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);
+  border-radius:var(--r-lg);padding:1.5rem;cursor:pointer;transition:all var(--t);
+  user-select:none;flex:1;position:relative;overflow:hidden}
+.sday-opt:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.09)}
+.sday-opt.active{background:linear-gradient(150deg,rgba(14,50,209,.5),rgba(14,50,209,.18));
+  border-color:var(--blue-500);box-shadow:0 0 0 4px rgba(14,50,209,.16),0 14px 44px rgba(0,0,0,.36)}
+.sday-badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.58rem;
+  font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.14);
+  color:rgba(255,255,255,.75);margin-bottom:.85rem;transition:all var(--t)}
+.sday-opt.active .sday-badge{background:var(--orange);color:#fff}
+.sday-hrs{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,2.9rem);font-weight:700;
+  color:#fff;line-height:1;letter-spacing:-.04em}
+.sday-lbl{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:.4rem}
+.sday-check{position:absolute;top:1.25rem;right:1.25rem;width:22px;height:22px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;
+  transition:all var(--t)}
+.sday-opt.active .sday-check{background:var(--orange);border-color:var(--orange)}
+.sday-check svg{opacity:0;transition:opacity var(--t)}
+.sday-opt.active .sday-check svg{opacity:1}
+
+/* calculator */
+.sday-calc{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--r-xl);padding:clamp(1.5rem,3.5vw,2.25rem);backdrop-filter:blur(18px)}
+.sday-calc h3{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.3rem}
+.sday-calc>.sdesc{font-size:.83rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;line-height:1.6}
+
+.seg{display:flex;gap:5px;background:rgba(255,255,255,.06);border-radius:100px;padding:5px;margin-bottom:1.25rem}
+.seg label{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 14px;border-radius:100px;font-size:.83rem;font-weight:600;
+  color:rgba(255,255,255,.58);cursor:pointer;transition:all var(--t)}
+.seg label:hover{color:#fff}
+.seg label input{position:absolute;opacity:0;width:0;height:0}
+.seg label.sel{background:#fff;color:var(--ink);box-shadow:0 3px 12px rgba(0,0,0,.24)}
+
+.sday-wrow{margin-bottom:1.25rem}
+.sday-wrow label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.55rem}
+.sday-wrow input{width:100%;padding:15px 20px;border-radius:14px;border:1.5px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06);color:#fff;font-size:1rem;font-weight:600;transition:all var(--t)}
+.sday-wrow input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(231,101,41,.16)}
+.sday-wrow input::placeholder{color:rgba(255,255,255,.26);font-weight:400}
+
+.sday-res{background:linear-gradient(140deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:1.35rem 1.5rem;margin-bottom:1.4rem}
+.sday-res-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.4rem}
+.sday-res-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(255,255,255,.45)}
+.sday-res-price{font-family:'Sora',sans-serif;font-size:clamp(1.9rem,4.5vw,2.4rem);font-weight:700;
+  color:#fff;letter-spacing:-.04em;font-variant-numeric:tabular-nums;transition:all var(--t)}
+.sday-res-break{font-size:.77rem;color:rgba(255,255,255,.5);margin-bottom:.35rem;line-height:1.55}
+.sday-res-note{font-size:.68rem;color:rgba(255,255,255,.3);font-style:italic;line-height:1.5}
+
+.sday-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.sday-ctas .btn{flex:1;min-width:150px}
+.sday-info{border-top:1px solid rgba(255,255,255,.1);padding-top:1.35rem;display:grid;
+  grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:520px){.sday-info{grid-template-columns:1fr}}
+.sday-br strong{display:flex;align-items:center;gap:6px;font-size:.84rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+.sday-br strong svg{color:var(--orange);flex-shrink:0}
+.sday-br span{display:block;font-size:.74rem;color:rgba(255,255,255,.48);line-height:1.65}
+
+/* ═══════════════════════════════════════════════════
+   RATES / ALL-IN
+═══════════════════════════════════════════════════ */
+.rates-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.25rem,3vw,2rem);margin-top:3rem;align-items:stretch}
+@media(max-width:820px){.rates-grid{grid-template-columns:1fr}}
+.rate-card{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r-lg);
+  padding:clamp(1.75rem,3.5vw,2.35rem);transition:all var(--t)}
+.rate-card:hover{box-shadow:var(--sh-lg);border-color:var(--blue-300)}
+.rate-card.dark{background:linear-gradient(150deg,var(--blue-700),var(--ink-800));border:none;color:#fff}
+.rate-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.45rem;letter-spacing:-.025em}
+.rate-card.dark h3{color:#fff}
+.rate-card>p{font-size:.87rem;color:var(--muted);line-height:1.65;margin-bottom:1.35rem}
+.rate-card.dark>p{color:rgba(255,255,255,.62)}
+.rate-inc{display:flex;flex-direction:column;gap:11px;margin-bottom:1.5rem}
+.rate-inc li{display:flex;align-items:flex-start;gap:11px;font-size:.85rem;color:var(--muted);line-height:1.55}
+.rate-card.dark .rate-inc li{color:rgba(255,255,255,.75)}
+.rate-tick{width:20px;height:20px;border-radius:50%;background:var(--blue-100);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rate-card.dark .rate-tick{background:rgba(255,255,255,.16);color:#fff}
+.rate-note{font-size:.76rem;color:var(--n-400);font-style:italic;line-height:1.6;
+  border-top:1px solid var(--n-200);padding-top:1.1rem;margin-bottom:1.35rem}
+.rate-card.dark .rate-note{color:rgba(255,255,255,.42);border-top-color:rgba(255,255,255,.14)}
+
+/* ═══════════════════════════════════════════════════
+   SERVICES — bento
+═══════════════════════════════════════════════════ */
+.svc-sec{background:var(--n-50)}
+.svc-label{display:flex;align-items:center;gap:12px;margin:3rem 0 1.35rem;font-size:.74rem;
+  font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-700)}
+.svc-label::after{content:'';flex:1;height:1px;background:var(--n-200)}
+.svc-label.orange{color:var(--orange-600)}
+
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+/* 4-up variant so the domestic group fills its row instead of orphaning a card */
+.bento.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1080px){.bento.four{grid-template-columns:1fr 1fr}}
+@media(max-width:880px){.bento{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.bento,.bento.four{grid-template-columns:1fr}}
+.svc{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r-lg);
+  padding:1.75rem;transition:all var(--t);position:relative;overflow:hidden}
+.svc:hover{border-color:var(--blue-300);box-shadow:var(--sh-lg);transform:translateY(-4px)}
+.svc-ic{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.2rem;color:#fff;flex-shrink:0}
+.ic-blue{background:linear-gradient(140deg,var(--blue-500),var(--blue-700));box-shadow:0 6px 18px rgba(14,50,209,.3)}
+.ic-orange{background:linear-gradient(140deg,#F08A50,var(--orange-600));box-shadow:0 6px 18px rgba(231,101,41,.3)}
+.ic-dark{background:linear-gradient(140deg,var(--ink-700),var(--ink));box-shadow:0 6px 18px rgba(6,9,26,.24)}
+.svc h3{font-size:1.02rem;font-weight:700;margin-bottom:.45rem;color:var(--text);letter-spacing:-.02em}
+.svc p{font-size:.855rem;color:var(--muted);line-height:1.65}
+.svc .chip{margin-top:1rem}
+
+/* more services */
+.more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:1.35rem}
+@media(max-width:880px){.more-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.more-grid{grid-template-columns:1fr 1fr}}
+.more-card{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r);
+  padding:1.35rem 1rem;display:flex;flex-direction:column;align-items:center;text-align:center;
+  gap:.75rem;transition:all var(--t)}
+.more-card:hover{border-color:var(--orange);box-shadow:var(--sh);transform:translateY(-3px)}
+.more-card:hover .more-ic{background:var(--orange);color:#fff}
+.more-ic{width:44px;height:44px;border-radius:13px;background:var(--blue-50);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+.more-card h4{font-size:.82rem;font-weight:600;color:var(--text);letter-spacing:-.01em}
 
 /* ═══════════════════════════════════════════════════
    WHY US
 ═══════════════════════════════════════════════════ */
-.why-sec{background:var(--bg)}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:start}
-@media(max-width:760px){.why-grid{grid-template-columns:1fr}}
-.why-list{display:flex;flex-direction:column;gap:.9rem;margin-top:2rem}
-.wi{display:flex;gap:.95rem;align-items:flex-start;background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r);padding:1.2rem 1.4rem;transition:all var(--t)}
-.wi:hover{border-color:var(--blue);box-shadow:var(--sh)}
-.wi-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.05rem;background:var(--blue-l)}
-.wi-text h4{font-size:.88rem;font-weight:700;margin-bottom:3px}
-.wi-text p{font-size:.8rem;color:var(--muted);line-height:1.55}
+@media(max-width:860px){.why-grid{grid-template-columns:1fr}}
+.why-list{display:flex;flex-direction:column;gap:.85rem;margin-top:2.25rem}
+.wi{display:flex;gap:1.1rem;align-items:flex-start;background:var(--white);
+  border:1px solid var(--n-200);border-radius:var(--r);padding:1.3rem 1.45rem;transition:all var(--t)}
+.wi:hover{border-color:var(--blue-300);box-shadow:var(--sh);transform:translateX(4px)}
+.wi-ic{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;background:var(--blue-50);color:var(--blue)}
+.wi h4{font-size:.92rem;font-weight:700;margin-bottom:4px;letter-spacing:-.015em}
+.wi p{font-size:.83rem;color:var(--muted);line-height:1.6}
 
-.why-visual{background:linear-gradient(140deg,var(--blue) 0%,#0c1d5e 100%);border-radius:var(--r-xl);padding:2.5rem;color:#fff;display:flex;flex-direction:column;gap:1.2rem}
-.wvt{font-size:.95rem;font-weight:800;opacity:.9}
-.sb-item{}
-.sb-lbl{display:flex;justify-content:space-between;font-size:.76rem;font-weight:600;opacity:.84;margin-bottom:5px}
-.sb-track{height:8px;background:rgba(255,255,255,.13);border-radius:100px;overflow:hidden}
-.sb-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--red),#ff8888)}
-.wv2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:.4rem}
-.wvbox{background:rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-align:center}
-.wvbox .n{font-size:1.85rem;font-weight:900;color:#fff;line-height:1}
-.wvbox .l{font-size:.68rem;opacity:.58;margin-top:3px}
-.wv-note{font-size:.72rem;opacity:.52;border-top:1px solid rgba(255,255,255,.13);padding-top:.9rem;line-height:1.55}
+.why-visual{background:linear-gradient(155deg,var(--blue-700) 0%,var(--ink) 100%);
+  border-radius:var(--r-xl);padding:clamp(1.85rem,4vw,2.5rem);color:#fff;
+  display:flex;flex-direction:column;gap:1.4rem;position:relative;overflow:hidden;
+  box-shadow:0 24px 60px rgba(10,38,166,.3)}
+.why-visual::before{content:'';position:absolute;width:340px;height:340px;right:-25%;top:-25%;
+  background:radial-gradient(circle,rgba(231,101,41,.34),transparent 66%);pointer-events:none}
+.wv-head{position:relative;z-index:2;display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:700}
+.wv-head svg{color:var(--orange-300)}
+.wv-bars{position:relative;z-index:2;display:flex;flex-direction:column;gap:1rem}
+.sb-lbl{display:flex;justify-content:space-between;font-size:.79rem;font-weight:600;
+  color:rgba(255,255,255,.82);margin-bottom:7px}
+.sb-lbl b{font-variant-numeric:tabular-nums}
+.sb-track{height:7px;background:rgba(255,255,255,.13);border-radius:100px;overflow:hidden}
+.sb-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue-300),var(--orange));
+  width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.wv2{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.wvbox{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:1.05rem;text-align:center}
+.wvbox .n{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:#fff;
+  line-height:1;letter-spacing:-.035em}
+.wvbox .l{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:5px}
+.wv-note{position:relative;z-index:2;font-size:.71rem;color:rgba(255,255,255,.42);
+  border-top:1px solid rgba(255,255,255,.12);padding-top:1rem;line-height:1.6}
+
+/* ═══════════════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════════════ */
+.gal-mosaic{display:grid;grid-template-columns:1.5fr 1fr;gap:1rem;margin-top:3rem}
+@media(max-width:720px){.gal-mosaic{grid-template-columns:1fr}}
+.gal-col{display:flex;flex-direction:column;gap:1rem}
+.gal-item{border-radius:var(--r);overflow:hidden;position:relative;background:var(--n-200);flex:1}
+.gal-item img{width:100%;height:100%;min-height:180px;object-fit:cover;
+  transition:transform .7s cubic-bezier(.4,0,.2,1)}
+.gal-item:hover img{transform:scale(1.07)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,9,26,.82) 0%,transparent 55%);
+  display:flex;align-items:flex-end;padding:1rem 1.15rem;pointer-events:none}
+.gal-ov span{color:#fff;font-size:.8rem;font-weight:600;line-height:1.4}
+.gal-row2{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:720px){.gal-row2{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.gal-row2{grid-template-columns:1fr}}
+.gal-row2 .gal-item{min-height:165px;flex:none}
+.gal-note{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:2rem;
+  font-size:.85rem;color:var(--muted);flex-wrap:wrap;text-align:center}
+.gal-note a{color:var(--blue);font-weight:700}
+.gal-note a:hover{text-decoration:underline}
 
 /* ═══════════════════════════════════════════════════
    MSME
 ═══════════════════════════════════════════════════ */
-.msme-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start;margin-top:3rem}
-@media(max-width:820px){.msme-grid{grid-template-columns:1fr}}
-.ms-steps{display:flex;flex-direction:column;gap:0}
-.ms-step{display:flex;gap:1.2rem;position:relative;padding-bottom:1.65rem}
+.msme-sec{background:var(--n-50)}
+.msme-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2rem,5vw,4rem);
+  align-items:start;margin-top:3rem}
+@media(max-width:860px){.msme-grid{grid-template-columns:1fr}}
+.ms-steps{display:flex;flex-direction:column}
+.ms-step{display:flex;gap:1.25rem;position:relative;padding-bottom:1.75rem}
 .ms-step:last-child{padding-bottom:0}
-.ms-step:not(:last-child)::after{content:'';position:absolute;left:20px;top:44px;width:2px;height:calc(100% - 24px);background:var(--gray-200)}
-.ms-num{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font-size:.84rem;font-weight:800;z-index:1}
-.ms-cnt h4{font-size:.92rem;font-weight:700;margin-bottom:3px;padding-top:9px}
-.ms-cnt p{font-size:.81rem;color:var(--muted);line-height:1.6}
-.ms-cards{display:flex;flex-direction:column;gap:.95rem}
-.ms-card{background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r-lg);padding:1.4rem 1.65rem;transition:all var(--t)}
-.ms-card:hover{border-color:var(--red);box-shadow:var(--sh)}
-.ms-card-top{display:flex;align-items:center;gap:9px;margin-bottom:.55rem}
-.ms-card h4{font-size:.88rem;font-weight:800}
-.ms-card p{font-size:.8rem;color:var(--muted);line-height:1.6}
-.ms-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.5rem}
+.ms-step:not(:last-child)::after{content:'';position:absolute;left:21px;top:46px;width:2px;
+  height:calc(100% - 26px);background:linear-gradient(var(--blue-300),var(--n-200))}
+.ms-num{width:44px;height:44px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;background:linear-gradient(140deg,var(--blue-500),var(--blue-700));
+  color:#fff;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;z-index:1;
+  box-shadow:0 5px 16px rgba(14,50,209,.28)}
+.ms-cnt{padding-top:8px}
+.ms-cnt h4{font-size:.97rem;font-weight:700;margin-bottom:5px;letter-spacing:-.02em}
+.ms-cnt p{font-size:.845rem;color:var(--muted);line-height:1.65}
+.ms-cards{display:flex;flex-direction:column;gap:1rem}
+.ms-card{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r-lg);
+  padding:1.5rem 1.7rem;transition:all var(--t)}
+.ms-card:hover{border-color:var(--orange);box-shadow:var(--sh)}
+.ms-card-top{display:flex;align-items:center;gap:11px;margin-bottom:.6rem}
+.ms-ic{width:36px;height:36px;border-radius:11px;background:var(--orange-100);color:var(--orange-600);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ms-card h4{font-size:.94rem;font-weight:700;letter-spacing:-.02em}
+.ms-card p{font-size:.845rem;color:var(--muted);line-height:1.65}
+.ms-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:.5rem}
 
 /* ═══════════════════════════════════════════════════
-   CONTACT / LOCATION
+   BRANCH MAP (dark)
 ═══════════════════════════════════════════════════ */
-.loc-sec{background:var(--bg)}
-.loc-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;margin-top:3rem}
-@media(max-width:760px){.loc-grid{grid-template-columns:1fr}}
-.map-wrap{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-lg);line-height:0;border:2px solid var(--gray-200)}
-.map-wrap iframe{width:100%;height:390px;border:0}
-.con-cards{display:flex;flex-direction:column;gap:.9rem}
-.cc{background:var(--white);border:2px solid var(--gray-200);border-radius:var(--r);padding:1.2rem 1.45rem;display:flex;align-items:flex-start;gap:.95rem;transition:all var(--t)}
-.cc:hover{border-color:var(--blue);box-shadow:var(--sh)}
-.cc a.cc{cursor:pointer}
-.cc-icon{width:42px;height:42px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
-.cc-b{background:var(--blue-l)}.cc-r{background:var(--red-l)}.cc-g{background:#e8faf0}
-.cc-info .lbl{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
-.cc-info .val{font-size:.875rem;font-weight:600;color:var(--text);line-height:1.4}
-.cc-info .sub{font-size:.76rem;color:var(--muted);margin-top:2px}
+.bmap-sec{background:var(--ink);padding:clamp(4rem,8vw,6.5rem) 0;position:relative;overflow:hidden}
+.bmap-sec::before{content:'';position:absolute;width:700px;height:700px;right:-16%;top:-28%;
+  background:radial-gradient(circle,rgba(14,50,209,.4),transparent 66%);pointer-events:none}
+.bmap-inner{position:relative;z-index:2}
+.bmap-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:2.25rem;align-items:start;margin-top:3rem}
+@media(max-width:920px){.bmap-grid{grid-template-columns:1fr}}
+.bmap-frame{border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.1)}
+.bmap-frame iframe{width:100%;height:460px;border:none;display:block;filter:saturate(.85) brightness(.92)}
+.bmap-pins{display:flex;flex-direction:column;gap:.8rem}
+.bm-card{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1.2rem 1.3rem;transition:all var(--t)}
+.bm-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.24);transform:translateX(6px)}
+.bm-num{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.86rem;color:#fff;flex-shrink:0}
+.bm-n1{background:linear-gradient(140deg,var(--blue-500),var(--blue-700))}
+.bm-n2{background:linear-gradient(140deg,#F08A50,var(--orange-600))}
+.bm-n3{background:linear-gradient(140deg,#34d399,#059669)}
+.bm-n4{background:linear-gradient(140deg,#a78bfa,#7c3aed)}
+.bm-info{flex:1;min-width:0}
+.bm-info h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:3px;letter-spacing:-.02em}
+.bm-info p{font-size:.76rem;color:rgba(255,255,255,.48);line-height:1.55}
+.bm-dir{font-size:.71rem;font-weight:600;color:rgba(255,255,255,.35);margin-top:7px;
+  display:inline-flex;align-items:center;gap:5px;transition:color var(--t)}
+.bm-card:hover .bm-dir{color:var(--orange-300)}
 
 /* ═══════════════════════════════════════════════════
-   CTA BANNER
+   CONTACT
 ═══════════════════════════════════════════════════ */
-.cta-sec{background:linear-gradient(140deg,var(--red) 0%,#8f0f0f 100%);padding:clamp(4rem,8vw,6rem) 0;position:relative;overflow:hidden}
-.cta-sec::before{content:'';position:absolute;right:-8%;bottom:-15%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 65%)}
-.cta-sec::after{content:'';position:absolute;left:-5%;top:-20%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,77,184,.25) 0%,transparent 65%)}
+.loc-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,3.5rem);
+  align-items:start;margin-top:3rem}
+@media(max-width:820px){.loc-grid{grid-template-columns:1fr}}
+.map-wrap{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-lg);line-height:0;
+  border:1px solid var(--n-200)}
+.map-wrap iframe{width:100%;height:420px;border:0}
+.con-cards{display:flex;flex-direction:column;gap:.8rem}
+.cc{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r);
+  padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:1rem;transition:all var(--t)}
+.cc:hover{border-color:var(--blue-300);box-shadow:var(--sh);transform:translateY(-2px)}
+.cc-ic{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;background:var(--blue-50);color:var(--blue)}
+.cc-ic.o{background:var(--orange-100);color:var(--orange-600)}
+.cc-ic.g{background:#e8faf0;color:#059669}
+.cc-info{min-width:0}
+.cc-info .lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--n-400);margin-bottom:4px}
+.cc-info .val{font-size:.9rem;font-weight:700;color:var(--text);line-height:1.4;letter-spacing:-.015em}
+.cc-info .sub{font-size:.78rem;color:var(--muted);margin-top:3px;line-height:1.5}
+
+/* ═══════════════════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════════════════ */
+.rev-sec{background:var(--n-50)}
+.rev-hd{text-align:center;margin-bottom:3rem}
+.rev-stars-row{display:inline-flex;align-items:center;gap:10px;background:var(--white);
+  border:1px solid var(--n-200);border-radius:100px;padding:8px 18px;margin-bottom:1.25rem;box-shadow:var(--sh-sm)}
+.rev-stars-big{color:#F5A623;font-size:1.05rem;letter-spacing:2px;line-height:1}
+.rev-score{font-family:'Sora',sans-serif;font-size:.95rem;font-weight:700;color:var(--text)}
+.rev-platform{font-size:.77rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.rev-hd h2{font-size:clamp(1.75rem,4vw,2.6rem);font-weight:700;color:var(--text);margin-bottom:.6rem}
+.rev-hd>p{color:var(--muted);font-size:.97rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:920px){.rev-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.rev-grid{grid-template-columns:1fr}}
+.rev-card{background:var(--white);border:1px solid var(--n-200);border-radius:var(--r-lg);
+  padding:1.6rem;display:flex;flex-direction:column;gap:1rem;transition:all var(--t)}
+.rev-card:hover{box-shadow:var(--sh-lg);transform:translateY(-4px);border-color:var(--blue-300)}
+.rev-top{display:flex;align-items:center;gap:.85rem}
+.rev-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(140deg,var(--blue-500),var(--orange));
+  display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;
+  font-weight:700;font-size:.95rem;color:#fff;flex-shrink:0}
+.rev-meta{flex:1;min-width:0}
+.rev-name{font-weight:700;font-size:.9rem;color:var(--text);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;letter-spacing:-.015em}
+.rev-date{font-size:.74rem;color:var(--n-400);margin-top:1px}
+.rev-stars{color:#F5A623;font-size:.9rem;letter-spacing:1.5px;line-height:1}
+.rev-text{font-size:.855rem;color:var(--muted);line-height:1.7;flex:1}
+.rev-badge{display:inline-flex;align-items:center;gap:6px;font-size:.71rem;font-weight:600;
+  color:var(--blue-700);background:var(--blue-50);border-radius:100px;padding:5px 12px;width:fit-content}
+.rev-foot{text-align:center;margin-top:2.5rem}
+
+/* ═══════════════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════════════ */
+.cta-sec{position:relative;overflow:hidden;padding:clamp(4.5rem,9vw,7rem) 0;
+  background:linear-gradient(140deg,var(--blue) 0%,var(--blue-700) 45%,var(--ink) 100%)}
+.cta-sec::before{content:'';position:absolute;width:620px;height:620px;right:-10%;bottom:-38%;
+  background:radial-gradient(circle,rgba(231,101,41,.45),transparent 64%);pointer-events:none}
+.cta-sec::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 70% 80% at 30% 50%,#000,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 50%,#000,transparent 75%)}
 .cta-in{position:relative;z-index:2;text-align:center}
-.cta-in h2{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;color:#fff;margin-bottom:.7rem;letter-spacing:-.02em}
-.cta-in p{font-size:1rem;color:rgba(255,255,255,.78);max-width:52ch;margin:0 auto 2.25rem;line-height:1.65}
+.cta-in h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:#fff;margin-bottom:.9rem;letter-spacing:-.04em}
+.cta-in p{font-size:1.04rem;color:rgba(255,255,255,.72);max-width:54ch;margin:0 auto 2.4rem;line-height:1.7}
 .cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 
 /* ═══════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════ */
-.footer{background:#07091a;color:rgba(255,255,255,.52);padding:clamp(3rem,6vw,4.5rem) 0 1.5rem}
-.footer-grid{display:grid;grid-template-columns:1.65fr 1fr 1fr;gap:clamp(2rem,5vw,3.5rem);margin-bottom:3rem}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:440px){.footer-grid{grid-template-columns:1fr}}
-.f-logo{height:54px;width:auto;object-fit:contain;margin-bottom:.95rem}
-.f-brand strong{display:block;font-size:.88rem;font-weight:800;color:rgba(255,255,255,.9);margin-bottom:4px}
-.f-brand .tg{font-size:.78rem;line-height:1.6;margin-bottom:1.2rem;max-width:30ch}
+.footer{background:var(--ink);color:rgba(255,255,255,.5);padding:clamp(3.5rem,7vw,5rem) 0 1.75rem;
+  border-top:1px solid rgba(255,255,255,.07)}
+.f-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:clamp(1.75rem,4vw,3rem);margin-bottom:3rem}
+@media(max-width:880px){.f-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.f-grid{grid-template-columns:1fr}}
+.f-logo{width:52px;height:52px;border-radius:14px;overflow:hidden;margin-bottom:1.1rem}
+.f-logo img{width:100%;height:100%;object-fit:cover}
+.f-brand strong{display:block;font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;
+  color:#fff;margin-bottom:.5rem;letter-spacing:-.025em}
+.f-tag{font-size:.82rem;line-height:1.7;margin-bottom:1.4rem;max-width:34ch;color:rgba(255,255,255,.45)}
 .fsoc{display:flex;gap:9px}
-.fsb{width:35px;height:35px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.84rem;transition:all var(--t);border:1px solid rgba(255,255,255,.1)}
-.fsb:hover{background:var(--red);border-color:var(--red);transform:translateY(-2px)}
-.f-col h5{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.88);margin-bottom:.95rem}
-.f-col ul{display:flex;flex-direction:column;gap:7px}
-.f-col ul li a{font-size:.8rem;color:rgba(255,255,255,.48);transition:color var(--t)}
-.f-col ul li a:hover{color:#fff}
-.f-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.f-bot p{font-size:.74rem}
-.f-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:100px;padding:5px 13px;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6)}
-.f-badge .s{color:var(--red)}
+.fsb{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;transition:all var(--t);
+  border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.fsb:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-3px)}
+.f-col h5{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;
+  color:#fff;margin-bottom:1.1rem}
+.f-col ul{display:flex;flex-direction:column;gap:9px}
+.f-col a{font-size:.83rem;color:rgba(255,255,255,.45);transition:color var(--t)}
+.f-col a:hover{color:var(--orange-300)}
+.f-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:1.6rem;display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.f-bot p{font-size:.76rem;color:rgba(255,255,255,.38)}
+.f-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.11);border-radius:100px;padding:7px 15px;
+  font-size:.7rem;font-weight:700;color:rgba(255,255,255,.6)}
+.f-badge svg{color:var(--orange)}
 
 /* ═══════════════════════════════════════════════════
-   FLOATING BUTTONS
+   FLOATING
 ═══════════════════════════════════════════════════ */
 .float-bar{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;flex-direction:column;gap:10px;z-index:500}
-.fb-btn{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.26);font-size:1.25rem;transition:all var(--t)}
-.fb-btn:hover{transform:scale(1.12) translateY(-2px)}
+.fb-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(0,0,0,.3);transition:all var(--t);color:#fff}
+.fb-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.4)}
+.fb-msg{background:linear-gradient(140deg,#0084FF,#00C6FF)}
 .fb-fb{background:#1877F2}
-.fb-msg{background:linear-gradient(135deg,#0084FF,#00C6FF)}
-
-/* ═══════════════════════════════════════════════════
-   NAV LOGO SHAPE
-═══════════════════════════════════════════════════ */
-.nav-logo-shape{width:46px;height:46px;border-radius:10px;overflow:hidden;flex-shrink:0;border:2px solid var(--blue);box-shadow:0 2px 10px rgba(26,77,184,.18);background:#fff;display:flex;align-items:center;justify-content:center}
-.nav-logo-shape img{width:100%;height:100%;object-fit:contain;display:block}
-
-/* ═══════════════════════════════════════════════════
-   HERO ANIMATIONS
-═══════════════════════════════════════════════════ */
-@keyframes floatCargo{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2.5deg)}}
-.hero-cargo{position:absolute;right:3.5%;bottom:16%;z-index:3;pointer-events:none;animation:floatCargo 5s ease-in-out infinite;opacity:.2}
-@media(max-width:1050px){.hero-cargo{display:none}}
-
-/* ═══════════════════════════════════════════════════
-   SAME DAY DELIVERY SECTION
-═══════════════════════════════════════════════════ */
-.sday-sec{background:linear-gradient(155deg,#050c20 0%,#0c1d4a 55%,#07102a 100%);position:relative;overflow:hidden;color:#fff}
-.sday-sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:38px 38px;pointer-events:none}
-.sday-inner{position:relative;z-index:2}
-.sday-top{text-align:center;margin-bottom:2.5rem}
-.sday-route{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-bottom:.55rem;flex-wrap:wrap}
-.sday-city{font-size:clamp(2rem,6.5vw,4rem);font-weight:900;letter-spacing:-.03em;line-height:1}
-.sday-arrow-wrap{display:flex;align-items:center;opacity:.75}
-.sday-sub{font-size:.96rem;color:rgba(255,255,255,.58);max-width:54ch;margin:0 auto}
-.sday-opts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:540px;margin:0 auto 2.5rem}
-@media(max-width:440px){.sday-opts{grid-template-columns:1fr}}
-.sday-opt{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.13);border-radius:var(--r-xl);padding:1.4rem 1.2rem;text-align:center;cursor:pointer;transition:all .25s;user-select:none}
-.sday-opt:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1)}
-.sday-opt.active{background:rgba(26,77,184,.38);border-color:rgba(110,160,255,.65);box-shadow:0 0 0 3px rgba(26,77,184,.2),0 8px 32px rgba(0,0,0,.3)}
-.sday-opt-badge{display:inline-block;padding:3px 13px;border-radius:100px;font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;margin-bottom:.6rem}
-.sday-opt.active .sday-opt-badge{background:var(--blue)}
-.sday-opt-hrs{font-size:clamp(2.2rem,7vw,3.5rem);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em}
-.sday-opt-lbl{font-size:.7rem;color:rgba(255,255,255,.48);margin-top:.3rem}
-.sday-calc{max-width:660px;margin:0 auto;background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r-xl);padding:clamp(1.4rem,4vw,2.25rem)}
-.sday-calc h3{font-size:1.08rem;font-weight:800;color:#fff;margin-bottom:.25rem}
-.sday-calc>.sdesc{font-size:.83rem;color:rgba(255,255,255,.52);margin-bottom:1.35rem}
-.sday-type{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
-.sday-rlbl{display:flex;align-items:center;justify-content:center;gap:7px;flex:1;padding:10px 15px;border-radius:100px;border:2px solid rgba(255,255,255,.18);font-size:.83rem;font-weight:600;color:rgba(255,255,255,.62);cursor:pointer;transition:all .2s;min-width:120px}
-.sday-rlbl:hover{border-color:rgba(255,255,255,.38);color:#fff}
-.sday-rlbl input{position:absolute;opacity:0;width:0;height:0}
-.sday-rlbl.sel{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.68);color:#fff}
-.sday-wrow{margin-bottom:1rem}
-.sday-wrow label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:.4rem}
-.sday-wrow input{width:100%;padding:13px 20px;border-radius:12px;border:2px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;font-size:1rem;font-family:inherit;font-weight:600;transition:all .2s}
-.sday-wrow input:focus{outline:none;border-color:rgba(110,160,255,.75);box-shadow:0 0 0 3px rgba(26,77,184,.25)}
-.sday-wrow input::placeholder{color:rgba(255,255,255,.28);font-weight:400}
-.sday-res{background:rgba(255,255,255,.042);border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:1.1rem 1.35rem;margin-bottom:1.25rem}
-.sday-res-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
-.sday-res-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.48)}
-.sday-res-price{font-size:2.1rem;font-weight:900;color:#fff;letter-spacing:-.02em;transition:all .25s}
-.sday-res-break{font-size:.76rem;color:rgba(255,255,255,.44);margin-bottom:.3rem;line-height:1.5}
-.sday-res-note{font-size:.67rem;color:rgba(255,255,255,.28);font-style:italic}
-.sday-ctas{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:1.5rem}
-.sday-ctas .btn{flex:1;justify-content:center;min-width:130px}
-.sday-info{border-top:1px solid rgba(255,255,255,.1);padding-top:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:480px){.sday-info{grid-template-columns:1fr}}
-.sday-br strong{display:block;font-size:.84rem;font-weight:700;color:#fff;margin-bottom:.3rem}
-.sday-br span{display:block;font-size:.74rem;color:rgba(255,255,255,.52);line-height:1.6}
-
-/* FedEx rate includes */
-.rate-inc{list-style:none;display:flex;flex-direction:column;gap:5px;margin:.65rem 0 .8rem}
-.rate-inc li{display:flex;align-items:center;gap:7px;font-size:.75rem;color:rgba(255,255,255,.72)}
-.rate-inc-note{font-size:.69rem;color:rgba(255,255,255,.38);font-style:italic;margin-top:.4rem;line-height:1.55;border-top:1px solid rgba(255,255,255,.1);padding-top:.65rem}
-
-/* ═══════════════════════════════════════════════════
-   STATS COUNTER
-═══════════════════════════════════════════════════ */
-.stats-sec{background:linear-gradient(135deg,#06081c 0%,#0d1535 100%);padding:clamp(2.5rem,5vw,3.5rem) 0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-@media(max-width:680px){.stats-grid{grid-template-columns:1fr 1fr}}
-.stat-item{padding:2rem 1.2rem;text-align:center;position:relative}
-.stat-item+.stat-item::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.1)}
-@media(max-width:680px){.stat-item:nth-child(odd)+.stat-item::before{content:''}.stat-item:nth-child(3){border-top:1px solid rgba(255,255,255,.1)}.stat-item:nth-child(4){border-top:1px solid rgba(255,255,255,.1)}}
-.stat-num-wrap{display:flex;align-items:baseline;justify-content:center;gap:0;line-height:1;margin-bottom:.55rem}
-.stat-num{font-size:clamp(2.2rem,4.5vw,3rem);font-weight:900;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.stat-pre,.stat-suf{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900}
-.stat-label{font-size:.72rem;color:rgba(255,255,255,.46);letter-spacing:.07em;text-transform:uppercase}
-.stat-item:nth-child(1) .stat-num,.stat-item:nth-child(1) .stat-suf{color:#FF6B6B}
-.stat-item:nth-child(2) .stat-num,.stat-item:nth-child(2) .stat-suf{color:#6aacff}
-.stat-item:nth-child(3) .stat-num,.stat-item:nth-child(3) .stat-suf{color:#4ade80}
-.stat-item:nth-child(4) .stat-num,.stat-item:nth-child(4) .stat-pre{color:#fbbf24}
-
-/* ═══════════════════════════════════════════════════
-   PHOTO GALLERY
-═══════════════════════════════════════════════════ */
-.gallery-sec{background:#fff;padding:clamp(3.5rem,7vw,5.5rem) 0}
-.gallery-mosaic{display:grid;grid-template-columns:1.55fr 1fr;gap:1rem;margin-top:2.5rem}
-@media(max-width:700px){.gallery-mosaic{grid-template-columns:1fr}}
-.gal-col{display:flex;flex-direction:column;gap:1rem}
-.gal-item{border-radius:14px;overflow:hidden;position:relative;background:#dde3ef;flex:1}
-.gal-item img{width:100%;height:100%;min-height:180px;object-fit:cover;display:block;transition:transform .55s ease}
-.gal-item:hover img{transform:scale(1.06)}
-.gal-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,26,.72) 0%,transparent 48%);display:flex;align-items:flex-end;padding:.85rem 1rem;pointer-events:none}
-.gal-overlay span{color:#fff;font-size:.79rem;font-weight:600;line-height:1.35}
-.gallery-row2{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-@media(max-width:700px){.gallery-row2{grid-template-columns:1fr 1fr}}
-@media(max-width:440px){.gallery-row2{grid-template-columns:1fr}}
-.gallery-row2 .gal-item{min-height:155px;flex:none}
-.gal-fb-note{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:1.6rem;font-size:.82rem;color:#777;text-align:center;flex-wrap:wrap}
-.gal-fb-note a{color:var(--blue);font-weight:600;text-decoration:none}
-.gal-fb-note a:hover{text-decoration:underline}
-
-/* ═══════════════════════════════════════════════════
-   BRANCH MAP SECTION
-═══════════════════════════════════════════════════ */
-.branchmap-sec{background:#07091a;padding:clamp(3.5rem,7vw,5.5rem) 0}
-.branchmap-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:start;margin-top:2.5rem}
-@media(max-width:880px){.branchmap-grid{grid-template-columns:1fr}}
-.branchmap-frame{border-radius:18px;overflow:hidden;box-shadow:0 10px 50px rgba(0,0,0,.5)}
-.branchmap-frame iframe{width:100%;height:430px;border:none;display:block;filter:saturate(.75) brightness(.9)}
-.branchmap-pins{display:flex;flex-direction:column;gap:.85rem}
-.bm-card{display:flex;align-items:flex-start;gap:.9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:1.1rem 1.2rem;text-decoration:none;transition:all var(--t)}
-.bm-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);transform:translateX(5px)}
-.bm-num{width:37px;height:37px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.86rem;color:#fff;flex-shrink:0}
-.bm-n1{background:var(--red)}.bm-n2{background:var(--blue)}.bm-n3{background:#16a34a}.bm-n4{background:#d97706}
-.bm-info h4{font-size:.87rem;font-weight:700;color:#fff;margin-bottom:2px}
-.bm-info p{font-size:.74rem;color:rgba(255,255,255,.48);line-height:1.5}
-.bm-dir{font-size:.69rem;font-weight:600;color:rgba(255,255,255,.33);margin-top:5px;display:inline-flex;align-items:center;gap:4px;transition:color var(--t)}
-.bm-card:hover .bm-dir{color:#6aacff}
-
-/* ═══════════════════════════════════════════════════
-   REVIEWS SECTION
-═══════════════════════════════════════════════════ */
-.reviews-sec{background:#f4f6fb;padding:clamp(3.5rem,7vw,5.5rem) 0}
-.reviews-hd{text-align:center;margin-bottom:2.8rem}
-.reviews-hd h2{font-size:clamp(1.55rem,3.5vw,2.1rem);font-weight:800;color:#0a0f2c;margin-bottom:.45rem}
-.reviews-hd p{color:#555;font-size:.93rem}
-.reviews-stars-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:.55rem}
-.rev-stars-big{color:#f5a623;font-size:1.45rem;letter-spacing:2px;line-height:1}
-.rev-score{font-size:1.05rem;font-weight:700;color:#0a0f2c}
-.rev-platform{font-size:.78rem;color:#888;display:flex;align-items:center;gap:5px}
-.rev-platform svg{flex-shrink:0}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.35rem}
-@media(max-width:900px){.reviews-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.reviews-grid{grid-template-columns:1fr}}
-.rev-card{background:#fff;border-radius:14px;padding:1.5rem 1.55rem 1.4rem;box-shadow:0 2px 14px rgba(10,15,44,.07);display:flex;flex-direction:column;gap:.9rem;transition:box-shadow var(--t)}
-.rev-card:hover{box-shadow:0 6px 28px rgba(10,15,44,.13)}
-.rev-card-top{display:flex;align-items:center;gap:.75rem}
-.rev-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#fff;flex-shrink:0}
-.rev-meta{flex:1;min-width:0}
-.rev-name{font-weight:700;font-size:.88rem;color:#0a0f2c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rev-date{font-size:.73rem;color:#999;margin-top:1px}
-.rev-card-stars{color:#f5a623;font-size:.95rem;letter-spacing:1px;line-height:1}
-.rev-text{font-size:.83rem;color:#444;line-height:1.65;flex:1}
-.rev-badge{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;color:#1877F2;background:#eef3fd;border-radius:100px;padding:3px 10px;width:fit-content}
-.reviews-footer{text-align:center;margin-top:2.2rem}
-.reviews-footer a{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;color:var(--blue);text-decoration:none;border:1.5px solid var(--blue);border-radius:100px;padding:9px 22px;transition:all var(--t)}
-.reviews-footer a:hover{background:var(--blue);color:#fff}
+.fb-top{background:var(--ink-800);border:1px solid rgba(255,255,255,.14);opacity:0;
+  pointer-events:none;transition:all var(--t)}
+.fb-top.show{opacity:1;pointer-events:auto}
+@media(max-width:520px){.float-bar{bottom:1rem;right:1rem}.fb-btn{width:48px;height:48px}}
   </style>
 </head>
 <body>
 
-<!-- ══════════════ NAV ══════════════════════════════════════ -->
+<div class="progress" id="prog"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
 <header>
   <nav class="nav" id="mnav">
     <div class="wrap">
       <div class="nav-inner">
-        <a href="#" class="nav-brand">
-          <div class="nav-logo-shape">
-            <img src="logo.png" alt="Cebu Express logo" />
-          </div>
+        <a href="#" class="nav-brand" aria-label="Cebu Express home">
+          <div class="nav-logo"><img src="logo.png" alt="Cebu Express logo" /></div>
           <div class="nav-brand-text">
             <strong>Cebu Express</strong>
-            <span>FedEx Acceptance Center · Cebu</span>
+            <span>FedEx Authorized Ship Center</span>
           </div>
         </a>
 
         <div class="nav-links">
           <a href="#branches">Branches</a>
-          <a href="#track">Track</a>
           <a href="#sameday">Same Day</a>
           <a href="#services">Services</a>
+          <a href="#rates">Rates</a>
           <a href="#msme">MSME</a>
           <a href="#contact">Contact</a>
         </div>
 
         <div class="nav-cta">
           <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Get a Quote</a>
-          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-red btn-sm">💬 Message Us</a>
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-blue btn-sm">Message Us</a>
         </div>
 
-        <button class="hbg" id="hbg" aria-label="Menu">
+        <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
 
       <div class="mob-draw" id="mdraw">
-        <a href="#branches" onclick="cm()">🏢 Our Branches</a>
-        <a href="#track" onclick="cm()">📦 Track Shipment</a>
-        <a href="#sameday" onclick="cm()">🚀 Same Day Delivery</a>
-        <a href="#services" onclick="cm()">✈️ Services</a>
-        <a href="#msme" onclick="cm()">🏪 MSME Guide</a>
-        <a href="#contact" onclick="cm()">📍 Contact Us</a>
+        <a href="#branches" onclick="cm()">Our Branches</a>
+        <a href="#sameday" onclick="cm()">Same Day Delivery</a>
+        <a href="#services" onclick="cm()">Services</a>
+        <a href="#rates" onclick="cm()">Rates</a>
+        <a href="#msme" onclick="cm()">MSME Guide</a>
+        <a href="#contact" onclick="cm()">Contact Us</a>
         <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-outline">Get a Quote</a>
-        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-red">💬 Message Us</a>
+        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-blue">Message Us</a>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ══════════════ HERO ══════════════════════════════════════ -->
+<!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid-overlay"></div>
-  <div class="hero-glow"></div>
-
-  <!-- Floating cargo box -->
-  <div class="hero-cargo">
-    <svg width="96" height="86" viewBox="0 0 96 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="48,2 94,22 94,74 48,86 2,74 2,22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-      <polyline points="2,22 48,38 94,22" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" fill="none"/>
-      <line x1="48" y1="38" x2="48" y2="86" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-      <line x1="2" y1="48" x2="94" y2="48" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <text x="18" y="66" fill="rgba(255,255,255,0.32)" font-size="9" font-weight="700" font-family="Inter,sans-serif">FedEx</text>
-    </svg>
-  </div>
-
+  <div class="hero-grid"></div>
   <div class="wrap hero-inner">
+    <div class="hero-grid-2col">
 
-    <div class="hero-eye">
-      <div class="hero-eye-dot"></div>
-      FedEx Acceptance Center · Cebu, Philippines
-      <div class="hero-eye-dot green"></div>
-      Open Today
+      <div>
+        <div class="hero-badge rv">
+          <b>FedEx</b>
+          Authorized Ship Center · Cebu
+          <span class="live-dot"></span>
+        </div>
+
+        <h1 class="rv d1">Ship anywhere<br>in the world —<br><em>from Cebu.</em></h1>
+
+        <p class="hero-sub rv d2">
+          International &amp; domestic courier, same-day Cebu–Manila, ticketing, visa assistance
+          and bills payment — across 4 branches serving families, OFWs and MSMEs.
+        </p>
+
+        <div class="hero-ctas rv d3">
+          <a href="#branches" class="btn btn-orange btn-lg">
+            Find Your Branch
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#sameday" class="btn btn-glass btn-lg">Calculate Shipping</a>
+        </div>
+
+        <div class="hero-pills rv d4">
+          <span class="pill"><i></i> Mandaue City</span>
+          <span class="pill"><i></i> Mabolo, Cebu City</span>
+          <span class="pill"><i></i> Talisay City</span>
+          <span class="pill"><i></i> Consolacion</span>
+        </div>
+      </div>
+
+      <!-- Tracking glass card -->
+      <div class="track-card rv d2" id="track">
+        <h2>Track your shipment</h2>
+        <p>Enter your FedEx tracking number for a live status update anywhere in the world.</p>
+        <form onsubmit="doTrack(event)">
+          <div class="track-field">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            <input type="text" class="track-in" id="tnum" placeholder="e.g. 7489 2345 6789" aria-label="FedEx tracking number" />
+          </div>
+          <button type="submit" class="btn btn-blue btn-lg">
+            Track Package
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="track-foot">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          No tracking number? <a href="https://www.fedex.com/en-ph/tracking.html" target="_blank" rel="noopener">Go to FedEx.com/ph →</a>
+        </div>
+      </div>
+
     </div>
 
-    <h1 class="rv">Ship <span class="red">Anywhere</span> in<br>the World — From<br><span class="blue">Cebu.</span></h1>
-
-    <p class="hero-sub rv d1">
-      International &amp; domestic courier, ticketing, visa assistance, bills payment, and more — with 4 branches across Cebu serving families, MSMEs, and businesses.
-    </p>
-
-    <div class="hero-branches rv d1">
-      <div class="bp"><div class="bp-dot"></div> Mandaue City</div>
-      <div class="bp"><div class="bp-dot"></div> Mabolo, Cebu City</div>
-      <div class="bp"><div class="bp-dot"></div> Talisay City</div>
-      <div class="bp"><div class="bp-dot"></div> Consolacion, Cebu</div>
-    </div>
-
-    <div class="hero-ctas rv d2">
-      <a href="#track" class="btn btn-red btn-lg">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Track My Package
-      </a>
-      <a href="#branches" class="btn btn-ghost btn-lg">Find a Branch →</a>
-    </div>
-
+    <!-- Stats -->
     <div class="hero-stats rv d3">
-      <div class="hs"><strong>220+</strong><span>Countries via FedEx</span></div>
-      <div class="hs"><strong>4</strong><span>Branches in Cebu</span></div>
-      <div class="hs"><strong>7 Days</strong><span>Open Every Week</span></div>
-      <div class="hs"><strong>Free</strong><span>MSME Consultation</span></div>
+      <div class="hstat"><strong><span class="cnt" data-target="220">0</span><span class="u">+</span></strong><span>Countries via FedEx</span></div>
+      <div class="hstat"><strong><span class="cnt" data-target="500">0</span><span class="u">+</span></strong><span>Packages Monthly</span></div>
+      <div class="hstat"><strong><span class="cnt" data-target="4">0</span></strong><span>Branches in Cebu</span></div>
+      <div class="hstat"><strong><span class="u">★</span> <span class="cnt" data-target="5" data-decimal="1">0</span></strong><span>Facebook Rating</span></div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════ TRUST BAR ═════════════════════════════════ -->
+<!-- ══════════════ TRUST ══════════════ -->
 <div class="trust">
-  <div class="wrap trust-in">
+  <div class="wrap trust-track">
     <div class="ti">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      FedEx Acceptance Center
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      FedEx Authorized Ship Center
     </div>
-    <div class="tdiv"></div>
     <div class="ti">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       Real-Time Tracking
     </div>
-    <div class="tdiv"></div>
     <div class="ti">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Insured Shipments
     </div>
-    <div class="tdiv"></div>
     <div class="ti">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       Open 7 Days a Week
     </div>
-    <div class="tdiv"></div>
     <div class="ti">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       Bills Payment &amp; Money Transfer
     </div>
   </div>
 </div>
 
-<!-- ══════════════ STATS COUNTER ════════════════════════════ -->
-<section class="stats-sec">
-  <div class="wrap stats-grid">
-    <div class="stat-item">
-      <div class="stat-num-wrap">
-        <span class="stat-num" data-target="500">0</span><span class="stat-suf">+</span>
-      </div>
-      <p class="stat-label">Packages Shipped Monthly</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num-wrap">
-        <span class="stat-num" data-target="220">0</span><span class="stat-suf">+</span>
-      </div>
-      <p class="stat-label">Countries via FedEx</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num-wrap">
-        <span class="stat-num" data-target="4">0</span>
-      </div>
-      <p class="stat-label">Branches in Cebu</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num-wrap">
-        <span class="stat-pre">★ </span><span class="stat-num" data-target="5" data-decimal="1">0</span>
-      </div>
-      <p class="stat-label">Facebook Rating</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ BRANCHES ══════════════════════════════════ -->
+<!-- ══════════════ BRANCHES ══════════════ -->
 <section class="sec branches-sec" id="branches">
   <div class="wrap">
-    <p class="sec-label rv">Our Locations</p>
-    <h2 class="sec-title rv d1">4 Branches. One Reliable Service.</h2>
-    <p class="sec-desc rv d2">Walk in to the branch nearest you — our team is ready to assist with all your shipping and courier needs.</p>
+    <div class="sec-head">
+      <p class="eyebrow rv">Our Locations</p>
+      <h2 class="sec-title rv d1">4 branches.<br>One reliable service.</h2>
+      <p class="sec-desc rv d2">Walk in to the branch nearest you — our team is ready to assist with all your shipping and courier needs, seven days a week.</p>
+    </div>
 
     <div class="branches-grid">
 
-      <!-- ── MANDAUE ── -->
+      <!-- MANDAUE -->
       <div class="bc rv d1">
-        <div class="bc-tag bc-main">Main Branch</div>
-        <div class="bc-name">Mandaue Branch</div>
-
+        <span class="bc-tag main">Main Branch</span>
+        <h3 class="bc-name">Mandaue</h3>
         <div class="bc-row">
-          <span class="bc-icon">📍</span>
-          <div class="bc-text">Corner M.L. Quezon Ave &amp; V. Albano,<br>Manguikay, <strong>Mandaue City, Cebu 6014</strong><br><span style="font-size:.72rem;color:#888">Near RPN Channel 9 / Diatoms Gas Station</span></div>
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="bc-text">Cor. M.L. Quezon Ave &amp; V. Albano, Manguikay, <strong>Mandaue City, Cebu 6014</strong><br><span class="fine">Near RPN Channel 9 / Diatoms Gas Station</span></div>
         </div>
         <div class="bc-row">
-          <span class="bc-icon">🕐</span>
-          <div class="bc-text">
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div class="bc-text" style="flex:1">
             <table class="bc-ht" id="ht-mandaue">
               <tr data-d="1"><td>Mon – Fri</td><td>9:00 AM – 6:00 PM</td></tr>
               <tr data-d="6"><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
@@ -755,25 +901,29 @@ ul{list-style:none}
           </div>
         </div>
         <p class="bc-note">* Schedule may vary on holidays</p>
-        <div class="bc-phone">📞 09953032415 &nbsp;|&nbsp; 09311211830 &nbsp;|&nbsp; (032) 429-4916</div>
-        <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="bc-fb">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          @FedExMandaue
-        </a>
+        <div class="bc-phone">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>09953032415 · 09311211830<br>(032) 429-4916</span>
+        </div>
+        <div class="bc-fb-wrap">
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="bc-fb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Message Mandaue
+          </a>
+        </div>
       </div>
 
-      <!-- ── MABOLO ── -->
+      <!-- MABOLO -->
       <div class="bc rv d2">
-        <div class="bc-tag">Cebu City</div>
-        <div class="bc-name">Mabolo Branch</div>
-
+        <span class="bc-tag">Cebu City</span>
+        <h3 class="bc-name">Mabolo</h3>
         <div class="bc-row">
-          <span class="bc-icon">📍</span>
-          <div class="bc-text">Mabolo, <strong>Cebu City</strong><br><span style="font-size:.72rem;color:#888">FedEx Acceptance Center – Mabolo</span></div>
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="bc-text">G/F Express Inn Bldg, M.J. Cuenco Ave, Mabolo, <strong>Cebu City</strong></div>
         </div>
         <div class="bc-row">
-          <span class="bc-icon">🕐</span>
-          <div class="bc-text">
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div class="bc-text" style="flex:1">
             <table class="bc-ht" id="ht-mabolo">
               <tr data-d="1"><td>Mon – Fri</td><td>9:00 AM – 6:30 PM</td></tr>
               <tr data-d="6"><td>Saturday</td><td>9:00 AM – 6:30 PM</td></tr>
@@ -781,26 +931,30 @@ ul{list-style:none}
             </table>
           </div>
         </div>
-        <p class="bc-note">* Schedule may vary on holidays/vacations</p>
-        <div class="bc-phone">📞 09910916558 &nbsp;|&nbsp; (032) 326-8229</div>
-        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="bc-fb">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Mabolo Facebook Page
-        </a>
+        <p class="bc-note">* Schedule may vary on holidays</p>
+        <div class="bc-phone">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>09910916558<br>(032) 326-8229</span>
+        </div>
+        <div class="bc-fb-wrap">
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="bc-fb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Message Mabolo
+          </a>
+        </div>
       </div>
 
-      <!-- ── TALISAY ── -->
+      <!-- TALISAY -->
       <div class="bc rv d3">
-        <div class="bc-tag" style="background:var(--red-l);color:var(--red)">New Branch</div>
-        <div class="bc-name">Talisay Branch</div>
-
+        <span class="bc-tag new">New Branch</span>
+        <h3 class="bc-name">Talisay</h3>
         <div class="bc-row">
-          <span class="bc-icon">📍</span>
-          <div class="bc-text"><strong>Talisay City, Cebu</strong><br><span style="font-size:.72rem;color:#888">Message us for exact address</span></div>
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="bc-text"><strong>Talisay City, Cebu</strong><br><span class="fine">Message us for the exact address</span></div>
         </div>
         <div class="bc-row">
-          <span class="bc-icon">🕐</span>
-          <div class="bc-text">
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div class="bc-text" style="flex:1">
             <table class="bc-ht" id="ht-talisay">
               <tr data-d="1"><td>Mon – Fri</td><td>9:00 AM – 6:00 PM</td></tr>
               <tr data-d="6"><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
@@ -809,24 +963,25 @@ ul{list-style:none}
           </div>
         </div>
         <p class="bc-note">* Schedule may vary on holidays</p>
-        <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="bc-fb">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Talisay Facebook Page
-        </a>
+        <div class="bc-fb-wrap">
+          <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="bc-fb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Message Talisay
+          </a>
+        </div>
       </div>
 
-      <!-- ── CONSOLACION ── -->
+      <!-- CONSOLACION -->
       <div class="bc rv d4">
-        <div class="bc-tag" style="background:var(--red-l);color:var(--red)">New Branch</div>
-        <div class="bc-name">Consolacion Branch</div>
-
+        <span class="bc-tag new">New Branch</span>
+        <h3 class="bc-name">Consolacion</h3>
         <div class="bc-row">
-          <span class="bc-icon">📍</span>
-          <div class="bc-text"><strong>Consolacion, Cebu</strong><br><span style="font-size:.72rem;color:#888">Message us for exact address</span></div>
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="bc-text"><strong>Consolacion, Cebu</strong><br><span class="fine">Message us for the exact address</span></div>
         </div>
         <div class="bc-row">
-          <span class="bc-icon">🕐</span>
-          <div class="bc-text">
+          <svg class="bc-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div class="bc-text" style="flex:1">
             <table class="bc-ht" id="ht-consolacion">
               <tr data-d="1"><td>Mon – Fri</td><td>9:00 AM – 6:00 PM</td></tr>
               <tr data-d="6"><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
@@ -835,377 +990,393 @@ ul{list-style:none}
           </div>
         </div>
         <p class="bc-note">* Schedule may vary on holidays</p>
-        <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="bc-fb">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          @fedexconsolacion
-        </a>
+        <div class="bc-fb-wrap">
+          <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="bc-fb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Message Consolacion
+          </a>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ══════════════ TRACK ══════════════════════════════════════ -->
-<section class="sec track-sec" id="track">
-  <div class="wrap">
-    <div class="track-card rv">
-      <div class="track-l">
-        <p class="sec-label">Real-Time Tracking</p>
-        <h2>Where Is My Package?</h2>
-        <p>Enter your FedEx tracking number to see a live status update anywhere in the world.</p>
-        <form class="track-form" onsubmit="doTrack(event)">
-          <input type="text" class="track-in" id="tnum" placeholder="e.g. 7489 2345 6789" aria-label="FedEx Tracking Number" />
-          <button type="submit" class="btn btn-blue">Track</button>
-        </form>
-        <p class="track-hint">No tracking number? <a href="https://www.fedex.com/en-ph/tracking.html" target="_blank" rel="noopener">Go to FedEx.com/ph →</a></p>
-      </div>
-
-      <div class="track-r">
-        <div class="trb">
-          <h3>📦 Our Rates Are All-In</h3>
-          <ul class="rate-inc">
-            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> End-to-end handling (drop-off at branch or pickup upon request)</li>
-            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Commercial invoicing &amp; export declarations</li>
-            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Regulatory compliance (BFAR, BOQ &amp; others)</li>
-            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Professional FedEx-standard packaging</li>
-            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Viber, WhatsApp &amp; Messenger updates until delivery</li>
-          </ul>
-          <p class="rate-inc-note">Use the FedEx calculator as a base reference. Our all-in rate means zero surprises — your shipment is fully managed from your door to the recipient's.</p>
-          <a href="https://www.fedex.com/en-ph/shipping/rates.html" target="_blank" rel="noopener" class="trl">
-            View FedEx Base Rates
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <hr class="tr-div" />
-        <div class="trb">
-          <h3>🏢 Visit Our Nearest Branch</h3>
-          <p>Walk in to Mandaue, Mabolo, Talisay, or Consolacion — no appointment needed, open 7 days a week.</p>
-          <a href="#branches" class="trl">
-            View All Branches
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ SAME DAY DELIVERY ════════════════════════ -->
+<!-- ══════════════ SAME DAY ══════════════ -->
 <section class="sec sday-sec" id="sameday">
   <div class="wrap sday-inner">
 
-    <!-- Header -->
     <div class="sday-top rv">
       <div class="sday-route">
-        <div class="sday-city">CEBU</div>
-        <div class="sday-arrow-wrap">
-          <svg width="56" height="24" viewBox="0 0 56 24" fill="none">
-            <line x1="4" y1="12" x2="52" y2="12" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-            <path d="M44 6 L52 12 L44 18" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none" stroke-linejoin="round"/>
-            <path d="M12 18 L4 12 L12 6" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="sday-city">MANILA</div>
+        <span class="sday-city">CEBU</span>
+        <svg class="sday-arrow" width="62" height="24" viewBox="0 0 62 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12h54"/><path d="M50 6l8 6-8 6"/><path d="M12 18l-8-6 8-6"/>
+        </svg>
+        <span class="sday-city alt">MANILA</span>
       </div>
       <p class="sday-sub">Both directions — Cebu to Manila and Manila to Cebu. Bookable at all 4 branches. Door-to-door, fast, and fully tracked.</p>
-      <div style="margin-top:.9rem;display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem">
-        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:4px 14px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.85)">✈️ Airport-to-Airport also available</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:4px 14px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7)">Davao · Iloilo · CDO</span>
+      <div class="sday-tags">
+        <span class="sday-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+          Airport-to-airport available
+        </span>
+        <span class="sday-tag">Davao · Iloilo · CDO</span>
       </div>
     </div>
 
-    <!-- Speed options -->
-    <div class="sday-opts rv d1">
-      <div class="sday-opt active" id="sdopt-24" onclick="selectSday(24)">
-        <div class="sday-opt-badge">SAME DAY DELIVERY</div>
-        <div class="sday-opt-hrs">24 HRS</div>
-        <div class="sday-opt-lbl">Cebu → Manila</div>
+    <div class="sday-body">
+
+      <!-- Speed options -->
+      <div class="sday-opts rv d1">
+        <div class="sday-opt active" id="sdopt-24" onclick="selectSday(24)" role="button" tabindex="0">
+          <div class="sday-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="sday-badge">Same Day</div>
+          <div class="sday-hrs">24<span style="font-size:.45em;font-weight:600"> HRS</span></div>
+          <div class="sday-lbl">Cebu → Manila</div>
+        </div>
+        <div class="sday-opt" id="sdopt-48" onclick="selectSday(48)" role="button" tabindex="0">
+          <div class="sday-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="sday-badge">Next Day</div>
+          <div class="sday-hrs">48<span style="font-size:.45em;font-weight:600"> HRS</span></div>
+          <div class="sday-lbl">Cebu → Manila</div>
+        </div>
       </div>
-      <div class="sday-opt" id="sdopt-48" onclick="selectSday(48)">
-        <div class="sday-opt-badge">NEXT DAY DELIVERY</div>
-        <div class="sday-opt-hrs">48 HRS</div>
-        <div class="sday-opt-lbl">Cebu → Manila</div>
+
+      <!-- Calculator -->
+      <div class="sday-calc rv d2">
+        <h3>Calculate your shipping cost</h3>
+        <p class="sdesc">Door-to-door delivery. Pickup available upon request — or drop off at any branch.</p>
+
+        <div class="seg">
+          <label class="sel" id="sday-lbl-docs">
+            <input type="radio" name="sdtype" value="docs" checked onchange="calcSday()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/></svg>
+            Documents
+          </label>
+          <label id="sday-lbl-parcel">
+            <input type="radio" name="sdtype" value="parcel" onchange="calcSday()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            Parcel
+          </label>
+        </div>
+
+        <div class="sday-wrow" id="sday-wrow" style="display:none">
+          <label for="sday-kg">Weight (kg)</label>
+          <input type="number" id="sday-kg" min="0.1" max="100" step="0.1" placeholder="e.g. 2.5" oninput="calcSday()">
+        </div>
+
+        <div class="sday-res">
+          <div class="sday-res-row">
+            <span class="sday-res-lbl">Estimated Cost</span>
+            <span class="sday-res-price" id="sday-price">₱3,200</span>
+          </div>
+          <div class="sday-res-break" id="sday-break">Flat rate — document shipment, any weight</div>
+          <div class="sday-res-note">* Final rate confirmed upon booking. Drop-off at branch or pickup available upon request.</div>
+        </div>
+
+        <div class="sday-ctas">
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-orange">Book — Mandaue</a>
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-glass">Book — Mabolo</a>
+        </div>
+
+        <div class="sday-info">
+          <div class="sday-br">
+            <strong><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Mandaue Branch</strong>
+            <span>09953032415 · (032) 429-4916</span>
+            <span>Cor. M.L. Quezon Ave &amp; V. Albano, Manguikay</span>
+          </div>
+          <div class="sday-br">
+            <strong><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Mabolo Branch</strong>
+            <span>09910916558 · (032) 326-8229</span>
+            <span>G/F Express Inn Bldg, M.J. Cuenco Ave</span>
+          </div>
+        </div>
       </div>
+
     </div>
-
-    <!-- Calculator -->
-    <div class="sday-calc rv d2">
-      <h3>Calculate Your Shipping Cost</h3>
-      <p class="sdesc">Cebu to Manila, door-to-door delivery. Pickup available upon request — or drop off at our branch.</p>
-
-      <!-- Shipment type -->
-      <div class="sday-type">
-        <label class="sday-rlbl sel" id="sday-lbl-docs">
-          <input type="radio" name="sdtype" value="docs" checked onchange="calcSday()">
-          📄 Documents
-        </label>
-        <label class="sday-rlbl" id="sday-lbl-parcel">
-          <input type="radio" name="sdtype" value="parcel" onchange="calcSday()">
-          📦 Parcel / Package
-        </label>
-      </div>
-
-      <!-- Weight input (shown for parcels) -->
-      <div class="sday-wrow" id="sday-wrow" style="display:none">
-        <label for="sday-kg">Weight (kg)</label>
-        <input type="number" id="sday-kg" min="0.1" max="100" step="0.1" placeholder="e.g. 2.5" oninput="calcSday()">
-      </div>
-
-      <!-- Result -->
-      <div class="sday-res">
-        <div class="sday-res-row">
-          <span class="sday-res-lbl">Estimated Cost</span>
-          <span class="sday-res-price" id="sday-price">₱3,200</span>
-        </div>
-        <div class="sday-res-break" id="sday-break">Base rate — documents or first kilo of parcel</div>
-        <div class="sday-res-note">* Final rate confirmed upon booking. Drop-off at branch or pickup available upon request.</div>
-      </div>
-
-      <!-- CTAs -->
-      <div class="sday-ctas">
-        <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-red">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Book — Mandaue Branch
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-blue">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Book — Mabolo Branch
-        </a>
-      </div>
-
-      <!-- Branch info -->
-      <div class="sday-info">
-        <div class="sday-br">
-          <strong>📍 Mandaue Branch</strong>
-          <span>📞 09953032415 · (032) 429-4916</span>
-          <span>Corner M.L. Quezon Ave &amp; V. Albano, Manguikay</span>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.38)">Near RPN Channel 9 / Diatoms Gas Station</span>
-        </div>
-        <div class="sday-br">
-          <strong>📍 Mabolo Branch</strong>
-          <span>📞 09910916558 · (032) 326-8229</span>
-          <span>G/F Express Inn Bldg, M.J. Cuenco Ave, Mabolo</span>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ══════════════ SERVICES ═══════════════════════════════════ -->
-<section class="sec" id="services" style="background:var(--bg)">
+<!-- ══════════════ RATES ══════════════ -->
+<section class="sec" id="rates">
   <div class="wrap">
-    <p class="sec-label rv">Complete Services</p>
-    <h2 class="sec-title rv d1">More Than Just Shipping</h2>
-    <p class="sec-desc rv d2">We are your one-stop courier and business services center in Cebu — FedEx international, domestic delivery, and so much more.</p>
+    <div class="sec-head">
+      <p class="eyebrow rv">Transparent Pricing</p>
+      <h2 class="sec-title rv d1">Our rates are all-in.</h2>
+      <p class="sec-desc rv d2">No hidden charges, no surprise fees at the counter. One price covers your shipment from your door to your recipient's.</p>
+    </div>
 
-    <!-- FedEx International -->
-    <h3 class="rv d1" style="margin-top:2.5rem;font-size:1rem;font-weight:700;color:var(--blue);letter-spacing:.02em;text-transform:uppercase;font-size:.8rem">✈️ FedEx International Shipping</h3>
-    <div class="svc-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:1rem">
+    <div class="rates-grid">
+      <div class="rate-card dark rv d1">
+        <h3>What's included</h3>
+        <p>Every Cebu Express shipment comes fully managed — you hand us the package, we handle the rest.</p>
+        <ul class="rate-inc">
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> End-to-end handling — drop-off at branch or pickup on request</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Commercial invoicing &amp; export declarations</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Regulatory compliance (BFAR, BOQ &amp; others)</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Professional FedEx-standard packaging</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Viber, WhatsApp &amp; Messenger updates until delivery</li>
+        </ul>
+        <p class="rate-note">Use the FedEx calculator as a base reference. Our all-in rate means zero surprises — your shipment is fully managed from your door to the recipient's.</p>
+        <a href="https://www.fedex.com/en-ph/shipping/rates.html" target="_blank" rel="noopener" class="btn btn-glass btn-sm">
+          View FedEx base rates
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="rate-card rv d2">
+        <h3>Get a quote in minutes</h3>
+        <p>Message any branch with your destination, rough weight and what you're sending — we'll compare FedEx Priority vs. Economy and give you the best option for your budget.</p>
+        <ul class="rate-inc">
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Real people, no chatbots — we answer fast</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Advice on how to save on shipping fees</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Free export consultation for MSMEs</li>
+          <li><span class="rate-tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Walk in to any of our 4 branches — no appointment</li>
+        </ul>
+        <p class="rate-note">Open 7 days a week: Mon–Sat 9:00 AM – 6:00 PM, Sunday 9:00 AM – 3:00 PM. Mabolo closes 6:30 PM on weekdays.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-blue btn-sm">Get a Quote</a>
+          <a href="#branches" class="btn btn-outline btn-sm">View All Branches</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section class="sec svc-sec" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Complete Services</p>
+      <h2 class="sec-title rv d1">More than just shipping.</h2>
+      <p class="sec-desc rv d2">A one-stop courier and business services centre in Cebu — FedEx international, nationwide domestic delivery, and everything in between.</p>
+    </div>
+
+    <p class="svc-label rv">FedEx International Shipping</p>
+    <div class="bento">
       <div class="svc rv d1">
-        <div class="svc-ic ic-b">🌏</div>
+        <div class="svc-ic ic-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </div>
         <h3>International Priority</h3>
-        <p>Door-to-door delivery to 220+ countries in 1–3 business days. The fastest way to ship from Cebu.</p>
-        <div class="chip chip-blue" style="margin-top:.85rem">⚡ 1–3 Business Days</div>
+        <p>Door-to-door delivery to 220+ countries in 1–3 business days. The fastest way to ship out of Cebu.</p>
+        <span class="chip chip-blue">1–3 Business Days</span>
       </div>
       <div class="svc rv d2">
-        <div class="svc-ic ic-r">📦</div>
+        <div class="svc-ic ic-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
         <h3>International Economy</h3>
         <p>Cost-effective international shipping for bulk orders and non-urgent packages. Ideal for Cebu MSMEs.</p>
-        <div class="chip chip-red" style="margin-top:.85rem">💰 7–14 Business Days</div>
+        <span class="chip chip-orange">7–14 Business Days</span>
       </div>
       <div class="svc rv d3">
-        <div class="svc-ic ic-b">📄</div>
+        <div class="svc-ic ic-dark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M9 13h6M9 17h6"/></svg>
+        </div>
         <h3>Document Courier</h3>
-        <p>Fast, secure worldwide delivery of legal papers, contracts, passports, and business documents.</p>
-        <div class="chip chip-blue" style="margin-top:.85rem">🔒 Fully Tracked</div>
+        <p>Fast, secure worldwide delivery of legal papers, contracts, passports and business documents.</p>
+        <span class="chip chip-blue">Fully Tracked</span>
       </div>
     </div>
 
-    <!-- Domestic -->
-    <h3 class="rv" style="margin-top:2.5rem;font-weight:700;color:var(--red);letter-spacing:.02em;text-transform:uppercase;font-size:.8rem">🚚 Domestic Shipping (Philippines)</h3>
-    <div class="dom-grid rv d1">
-      <div class="dom-card">
-        <h4>✈️ Same Day Delivery</h4>
-        <p>Cebu ⇌ Manila in 24 hours. The fastest domestic service for urgent parcels and documents.</p>
-        <div class="chip chip-red">24 Hours · Cebu–Manila</div>
+    <p class="svc-label orange rv">Domestic Shipping — Philippines</p>
+    <div class="bento four">
+      <div class="svc rv d1">
+        <div class="svc-ic ic-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+        </div>
+        <h3>Same Day Delivery</h3>
+        <p>Cebu ⇌ Manila in 24 hours. Our fastest domestic service for urgent parcels and documents.</p>
+        <span class="chip chip-orange">24 Hours · Cebu–Manila</span>
       </div>
-      <div class="dom-card">
-        <h4>📦 Rush &amp; Standard Shipping</h4>
-        <p>Cebu to Puerto Princesa, Davao, CDO, and more — Rush (3–4 days) or Standard (7 days) available.</p>
-        <div class="chip chip-blue">Nationwide Coverage</div>
+      <div class="svc rv d2">
+        <div class="svc-ic ic-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <h3>Rush &amp; Standard Shipping</h3>
+        <p>Cebu to Puerto Princesa, Davao, CDO and more — Rush (3–4 days) or Standard (7 days).</p>
+        <span class="chip chip-blue">Nationwide Coverage</span>
       </div>
-      <div class="dom-card">
-        <h4>📦 SPX Delivery</h4>
-        <p>Affordable nationwide delivery via SPX (Shopee Express) — reliable last-mile coverage across the Philippines.</p>
-        <div class="chip chip-blue">7 Days · Philippines</div>
-      </div>
-      <div class="dom-card">
-        <h4>🚢 Sea Cargo</h4>
+      <div class="svc rv d3">
+        <div class="svc-ic ic-dark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4M12 2v3"/></svg>
+        </div>
+        <h3>Sea Cargo</h3>
         <p>Cost-effective sea freight for larger or heavier shipments to Visayas and Mindanao ports.</p>
-        <div class="chip chip-red">7–14 Days · Sea Freight</div>
+        <span class="chip chip-orange">7–14 Days · Sea Freight</span>
+      </div>
+      <div class="svc rv d1">
+        <div class="svc-ic ic-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12a2 2 0 1 1 0-4h14a2 2 0 1 1 0 4M5 12a2 2 0 1 0 0 4h14a2 2 0 1 0 0-4"/><path d="M9 8V6M15 8V6M9 20v-4M15 20v-4"/></svg>
+        </div>
+        <h3>SPX Delivery</h3>
+        <p>Affordable nationwide delivery via SPX (Shopee Express) — reliable last-mile coverage across the country.</p>
+        <span class="chip chip-blue">7 Days · Philippines</span>
       </div>
     </div>
 
-    <!-- Other services -->
-    <h3 class="rv" style="margin-top:2.5rem;font-weight:700;color:var(--blue);letter-spacing:.02em;text-transform:uppercase;font-size:.8rem">🏪 More Services at Our Branches</h3>
+    <p class="svc-label rv">More Services at Our Branches</p>
     <div class="more-grid rv d1">
       <div class="more-card">
-        <div class="ico">🎟️</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v14"/></svg></div>
         <h4>Ticketing</h4>
       </div>
       <div class="more-card">
-        <div class="ico">🛂</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v18Z"/><circle cx="12" cy="10" r="2.5"/><path d="M9 17h6"/></svg></div>
         <h4>Visa Assistance</h4>
       </div>
       <div class="more-card">
-        <div class="ico">💸</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
         <h4>Bills Payment</h4>
       </div>
       <div class="more-card">
-        <div class="ico">💰</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5a2.5 2.5 0 0 0-2.5-1.5c-1.4 0-2.5.8-2.5 2s1.1 2 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2a2.5 2.5 0 0 1-2.5-1.5"/><path d="M12 6v12"/></svg></div>
         <h4>Money Transfer</h4>
       </div>
       <div class="more-card">
-        <div class="ico">🛡️</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h4>Insurance</h4>
       </div>
       <div class="more-card">
-        <div class="ico">🛂</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg></div>
         <h4>Passport Appointment</h4>
       </div>
       <div class="more-card">
-        <div class="ico">🖨️</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
         <h4>Copy &amp; Print</h4>
       </div>
       <div class="more-card">
-        <div class="ico">📝</div>
+        <div class="more-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg></div>
         <h4>Domiciliation</h4>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════ WHY US ════════════════════════════════════ -->
-<section class="sec why-sec">
-  <div class="wrap">
-    <div class="why-grid">
-      <div>
-        <p class="sec-label rv">Why Choose Us</p>
-        <h2 class="sec-title rv d1">Cebu's Most Trusted<br>FedEx Partner</h2>
-        <p class="sec-desc rv d2">Not just a counter — we're a full-service shipping and logistics center that takes care of you from start to delivery.</p>
-        <div class="why-list">
-          <div class="wi rv d1">
-            <div class="wi-icon">🤝</div>
-            <div class="wi-text"><h4>Personalized Service</h4><p>Real people assist you at every step — no chatbots. We find the best option for your needs and budget.</p></div>
-          </div>
-          <div class="wi rv d2">
-            <div class="wi-icon">📋</div>
-            <div class="wi-text"><h4>Customs Documentation Help</h4><p>We complete all customs forms and commercial invoices correctly the first time — no costly delays.</p></div>
-          </div>
-          <div class="wi rv d3">
-            <div class="wi-icon">🗺️</div>
-            <div class="wi-text"><h4>4 Convenient Locations</h4><p>Mandaue, Mabolo, Talisay, and Consolacion — we're close to where you live, work, and do business in Cebu.</p></div>
-          </div>
-          <div class="wi rv d4">
-            <div class="wi-icon">💬</div>
-            <div class="wi-text"><h4>After-Shipment Support</h4><p>Got questions after shipping? We follow up with FedEx on your behalf until it safely arrives.</p></div>
-          </div>
+<!-- ══════════════ WHY US ══════════════ -->
+<section class="sec">
+  <div class="wrap why-grid">
+    <div>
+      <p class="eyebrow rv">Why Choose Us</p>
+      <h2 class="sec-title rv d1">Cebu's most trusted FedEx partner.</h2>
+      <p class="sec-desc rv d2">Not just a counter — a full-service shipping and logistics centre that takes care of you from booking to delivery.</p>
+      <div class="why-list">
+        <div class="wi rv d1">
+          <div class="wi-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4>Personalised service</h4><p>Real people assist you at every step — no chatbots. We find the best option for your needs and budget.</p></div>
+        </div>
+        <div class="wi rv d2">
+          <div class="wi-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="m9 15 2 2 4-4"/></svg></div>
+          <div><h4>Customs documentation help</h4><p>We complete all customs forms and commercial invoices correctly the first time — no costly delays.</p></div>
+        </div>
+        <div class="wi rv d3">
+          <div class="wi-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>4 convenient locations</h4><p>Mandaue, Mabolo, Talisay and Consolacion — close to where you live, work and do business in Cebu.</p></div>
+        </div>
+        <div class="wi rv d4">
+          <div class="wi-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h4>After-shipment support</h4><p>Questions after shipping? We follow up with FedEx on your behalf until it safely arrives.</p></div>
         </div>
       </div>
+    </div>
 
-      <div class="why-visual rv d2">
-        <p class="wvt">FedEx Global Network Performance</p>
+    <div class="why-visual rv d2">
+      <div class="wv-head">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        FedEx Global Network Performance
+      </div>
+      <div class="wv-bars" id="wvbars">
         <div>
-          <div class="sb-item" style="margin-bottom:.9rem">
-            <div class="sb-lbl"><span>Delivery Speed</span><span>98%</span></div>
-            <div class="sb-track"><div class="sb-fill" style="width:98%"></div></div>
-          </div>
-          <div class="sb-item" style="margin-bottom:.9rem">
-            <div class="sb-lbl"><span>Tracking Accuracy</span><span>99%</span></div>
-            <div class="sb-track"><div class="sb-fill" style="width:99%"></div></div>
-          </div>
-          <div class="sb-item" style="margin-bottom:.9rem">
-            <div class="sb-lbl"><span>Package Safety</span><span>97%</span></div>
-            <div class="sb-track"><div class="sb-fill" style="width:97%"></div></div>
-          </div>
-          <div class="sb-item">
-            <div class="sb-lbl"><span>Customer Satisfaction</span><span>96%</span></div>
-            <div class="sb-track"><div class="sb-fill" style="width:96%"></div></div>
-          </div>
+          <div class="sb-lbl"><span>Delivery Speed</span><b>98%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="98"></div></div>
         </div>
-        <div class="wv2">
-          <div class="wvbox"><div class="n">220+</div><div class="l">Countries via FedEx</div></div>
-          <div class="wvbox"><div class="n">1–3</div><div class="l">Priority Days Intl</div></div>
-          <div class="wvbox"><div class="n">24hr</div><div class="l">Same Day to Manila</div></div>
-          <div class="wvbox"><div class="n">4</div><div class="l">Cebu Branches</div></div>
+        <div>
+          <div class="sb-lbl"><span>Tracking Accuracy</span><b>99%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="99"></div></div>
         </div>
-        <p class="wv-note">FedEx figures reflect global network benchmarks. Actual delivery times may vary by destination and service type.</p>
+        <div>
+          <div class="sb-lbl"><span>Package Safety</span><b>97%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="97"></div></div>
+        </div>
+        <div>
+          <div class="sb-lbl"><span>Customer Satisfaction</span><b>96%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="96"></div></div>
+        </div>
       </div>
+      <div class="wv2">
+        <div class="wvbox"><div class="n">220+</div><div class="l">Countries via FedEx</div></div>
+        <div class="wvbox"><div class="n">1–3</div><div class="l">Priority Days Intl</div></div>
+        <div class="wvbox"><div class="n">24hr</div><div class="l">Same Day to Manila</div></div>
+        <div class="wvbox"><div class="n">4</div><div class="l">Cebu Branches</div></div>
+      </div>
+      <p class="wv-note">FedEx figures reflect global network benchmarks. Actual delivery times may vary by destination and service type.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ PHOTO GALLERY ══════════════════════════════ -->
-<section class="sec gallery-sec">
+<!-- ══════════════ GALLERY ══════════════ -->
+<section class="sec" style="background:var(--n-50)">
   <div class="wrap">
-    <p class="sec-label rv">Our Service in Action</p>
-    <h2 class="sec-title rv d1">Trusted by Families, OFWs &amp; Businesses</h2>
-    <p class="sec-desc rv d2">Professional handling, careful packaging, and real-time updates — every shipment, every time.</p>
+    <div class="sec-head">
+      <p class="eyebrow rv">Our Service in Action</p>
+      <h2 class="sec-title rv d1">Trusted by families, OFWs &amp; businesses.</h2>
+      <p class="sec-desc rv d2">Professional handling, careful packaging and real-time updates — every shipment, every time.</p>
+    </div>
 
-    <div class="gallery-mosaic rv">
+    <div class="gal-mosaic rv">
       <div class="gal-col">
-        <div class="gal-item" style="min-height:260px">
-          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="FedEx packages being handled">
-          <div class="gal-overlay"><span>FedEx International Shipping — Worldwide Coverage</span></div>
+        <div class="gal-item" style="min-height:270px">
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Packages being handled for international shipping">
+          <div class="gal-ov"><span>FedEx International Shipping — Worldwide Coverage</span></div>
         </div>
-        <div class="gal-item" style="min-height:180px">
+        <div class="gal-item" style="min-height:185px">
           <img src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Packages ready for delivery">
-          <div class="gal-overlay"><span>Every parcel carefully prepared for its journey</span></div>
+          <div class="gal-ov"><span>Every parcel carefully prepared for its journey</span></div>
         </div>
       </div>
       <div class="gal-col">
-        <div class="gal-item" style="min-height:200px">
-          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Airplane in flight">
-          <div class="gal-overlay"><span>Same Day Air Delivery — Cebu ↔ Manila</span></div>
+        <div class="gal-item" style="min-height:205px">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Aircraft in flight">
+          <div class="gal-ov"><span>Same Day Air Delivery — Cebu ⇌ Manila</span></div>
         </div>
-        <div class="gal-item" style="min-height:230px">
-          <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Delivery courier">
-          <div class="gal-overlay"><span>Domestic Courier via SPX Express</span></div>
+        <div class="gal-item" style="min-height:250px">
+          <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Delivery courier at work">
+          <div class="gal-ov"><span>Domestic Courier via SPX Express</span></div>
         </div>
       </div>
     </div>
 
-    <div class="gallery-row2 rv d2">
+    <div class="gal-row2 rv d2">
       <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Delivery boxes">
-        <div class="gal-overlay"><span>Packaging &amp; Handling Included</span></div>
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Delivery boxes stacked">
+        <div class="gal-ov"><span>Packaging &amp; Handling Included</span></div>
       </div>
       <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Cargo airplane on tarmac">
-        <div class="gal-overlay"><span>Airport-to-Airport — Davao · Iloilo · CDO</span></div>
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Cargo aircraft on tarmac">
+        <div class="gal-ov"><span>Airport-to-Airport — Davao · Iloilo · CDO</span></div>
       </div>
       <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Package tracking">
-        <div class="gal-overlay"><span>Real-Time FedEx Tracking Every Step</span></div>
+        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Package tracking on a device">
+        <div class="gal-ov"><span>Real-Time FedEx Tracking Every Step</span></div>
       </div>
     </div>
 
-    <p class="gal-fb-note rv d3">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-      See real shipment photos from our customers →
-      <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener">Visit our Facebook Page</a>
+    <p class="gal-note rv d3">
+      See real shipment photos from our customers
+      <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener">Visit our Facebook page →</a>
     </p>
   </div>
 </section>
 
-<!-- ══════════════ MSME ═══════════════════════════════════════ -->
-<section class="sec" id="msme">
+<!-- ══════════════ MSME ══════════════ -->
+<section class="sec msme-sec" id="msme">
   <div class="wrap">
-    <p class="sec-label rv">For Small Businesses</p>
-    <h2 class="sec-title rv d1">Cebu MSME Shipping Guide</h2>
-    <p class="sec-desc rv d2">From DTI registration to customs clearance — we guide Cebu's small and medium exporters every step of the way, at no extra charge.</p>
+    <div class="sec-head">
+      <p class="eyebrow rv">For Small Businesses</p>
+      <h2 class="sec-title rv d1">Cebu MSME shipping guide.</h2>
+      <p class="sec-desc rv d2">From DTI registration to customs clearance — we guide Cebu's small and medium exporters every step of the way, at no extra charge.</p>
+    </div>
 
     <div class="msme-grid">
       <div class="ms-steps rv d1">
@@ -1215,49 +1386,60 @@ ul{list-style:none}
         </div>
         <div class="ms-step">
           <div class="ms-num">2</div>
-          <div class="ms-cnt"><h4>Prepare Commercial Invoice</h4><p>Every international shipment requires a commercial invoice with accurate product descriptions, declared values, and HS codes.</p></div>
+          <div class="ms-cnt"><h4>Prepare commercial invoice</h4><p>Every international shipment requires a commercial invoice with accurate product descriptions, declared values and HS codes.</p></div>
         </div>
         <div class="ms-step">
           <div class="ms-num">3</div>
-          <div class="ms-cnt"><h4>Pack &amp; Declare Properly</h4><p>We assist with FedEx-standard packaging and ensure all items are declared correctly to avoid delays or damage claims.</p></div>
+          <div class="ms-cnt"><h4>Pack &amp; declare properly</h4><p>We assist with FedEx-standard packaging and ensure all items are declared correctly to avoid delays or damage claims.</p></div>
         </div>
         <div class="ms-step">
           <div class="ms-num">4</div>
-          <div class="ms-cnt"><h4>Ship &amp; Track in Real Time</h4><p>Once shipped, track your package live at every worldwide checkpoint until it reaches your buyer's door.</p></div>
+          <div class="ms-cnt"><h4>Ship &amp; track in real time</h4><p>Once shipped, track your package live at every worldwide checkpoint until it reaches your buyer's door.</p></div>
         </div>
       </div>
 
       <div class="ms-cards rv d2">
         <div class="ms-card">
-          <div class="ms-card-top"><span>📦</span><h4>We Handle the Paperwork</h4></div>
-          <p>Our team assists with customs forms, export declarations, and commercial invoices — so you focus on growing your business.</p>
+          <div class="ms-card-top">
+            <div class="ms-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/></svg></div>
+            <h4>We handle the paperwork</h4>
+          </div>
+          <p>Our team assists with customs forms, export declarations and commercial invoices — so you can focus on growing your business.</p>
         </div>
         <div class="ms-card">
-          <div class="ms-card-top"><span>💰</span><h4>Best Rate for Your Budget</h4></div>
+          <div class="ms-card-top">
+            <div class="ms-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v12"/><path d="M14.5 9.5a2.5 2.5 0 0 0-2.5-1.5c-1.4 0-2.5.8-2.5 2s1.1 2 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2a2.5 2.5 0 0 1-2.5-1.5"/></svg></div>
+            <h4>Best rate for your budget</h4>
+          </div>
           <p>We compare FedEx Priority vs. Economy for your specific shipment and help you pick the most cost-effective option.</p>
         </div>
         <div class="ms-card">
-          <div class="ms-card-top"><span>🌿</span><h4>Cebu Made, World Delivered</h4></div>
-          <p>Handicrafts, fashion, food products, furniture — we've helped Cebu MSMEs ship to Japan, the US, Australia, and Europe.</p>
+          <div class="ms-card-top">
+            <div class="ms-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div>
+            <h4>Cebu made, world delivered</h4>
+          </div>
+          <p>Handicrafts, fashion, food products, furniture — we've helped Cebu MSMEs ship to Japan, the US, Australia and Europe.</p>
         </div>
         <div class="ms-ctas">
-          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-red btn-sm">💬 Free Export Consultation</a>
-          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Follow Us</a>
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-orange btn-sm">Free Export Consultation</a>
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Follow Us</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ BRANCH MAP ════════════════════════════════ -->
-<section class="branchmap-sec">
-  <div class="wrap">
-    <p class="sec-label rv" style="color:rgba(255,255,255,.45)">Find Us</p>
-    <h2 class="sec-title rv d1" style="color:#fff">4 Branches Across Greater Cebu</h2>
-    <p class="sec-desc rv d2" style="color:rgba(255,255,255,.55)">All branches offer the same complete service — walk in to whichever is nearest to you.</p>
+<!-- ══════════════ BRANCH MAP ══════════════ -->
+<section class="bmap-sec">
+  <div class="wrap bmap-inner">
+    <div class="sec-head">
+      <p class="eyebrow on-dark rv">Find Us</p>
+      <h2 class="sec-title on-dark rv d1">4 branches across Greater Cebu.</h2>
+      <p class="sec-desc on-dark rv d2">All branches offer the same complete service — walk in to whichever is nearest to you.</p>
+    </div>
 
-    <div class="branchmap-grid">
-      <div class="branchmap-frame rv">
+    <div class="bmap-grid">
+      <div class="bmap-frame rv">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125453.13321928!2d123.82789515!3d10.33611205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sph!4v1700000000001"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -1265,14 +1447,14 @@ ul{list-style:none}
         </iframe>
       </div>
 
-      <div class="branchmap-pins rv d1">
+      <div class="bmap-pins rv d1">
         <a class="bm-card" href="https://www.google.com/maps/search/Cebu+Express+Mandaue" target="_blank" rel="noopener">
           <div class="bm-num bm-n1">1</div>
           <div class="bm-info">
             <h4>Mandaue City Branch</h4>
-            <p>M.L. Quezon Ave, Manguikay<br>Near RPN Channel 9 · 09953032415</p>
+            <p>M.L. Quezon Ave, Manguikay · Near RPN Channel 9<br>09953032415</p>
             <span class="bm-dir">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               Get Directions
             </span>
           </div>
@@ -1281,9 +1463,9 @@ ul{list-style:none}
           <div class="bm-num bm-n2">2</div>
           <div class="bm-info">
             <h4>Mabolo Branch — Cebu City</h4>
-            <p>Mabolo, Cebu City<br>09910916558 · (032) 326-8229</p>
+            <p>M.J. Cuenco Ave, Mabolo<br>09910916558 · (032) 326-8229</p>
             <span class="bm-dir">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               Get Directions
             </span>
           </div>
@@ -1294,7 +1476,7 @@ ul{list-style:none}
             <h4>Talisay City Branch</h4>
             <p>Talisay City, Cebu<br>Message on Facebook for directions</p>
             <span class="bm-dir">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               Get Directions
             </span>
           </div>
@@ -1305,7 +1487,7 @@ ul{list-style:none}
             <h4>Consolacion Branch</h4>
             <p>Consolacion, Cebu<br>Message on Facebook for directions</p>
             <span class="bm-dir">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               Get Directions
             </span>
           </div>
@@ -1315,12 +1497,14 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ══════════════ CONTACT ════════════════════════════════════ -->
-<section class="sec loc-sec" id="contact">
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="sec" id="contact">
   <div class="wrap">
-    <p class="sec-label rv">Get In Touch</p>
-    <h2 class="sec-title rv d1">Visit or Message Us</h2>
-    <p class="sec-desc rv d2">We're open 7 days a week across 4 branches. Walk in, call, or message us on Facebook — we respond fast.</p>
+    <div class="sec-head">
+      <p class="eyebrow rv">Get In Touch</p>
+      <h2 class="sec-title rv d1">Visit or message us.</h2>
+      <p class="sec-desc rv d2">Open 7 days a week across 4 branches. Walk in, call, or message us on Facebook — we respond fast.</p>
+    </div>
 
     <div class="loc-grid">
       <div class="map-wrap rv d1">
@@ -1333,43 +1517,43 @@ ul{list-style:none}
 
       <div class="con-cards rv d2">
         <div class="cc">
-          <div class="cc-icon cc-b">🕐</div>
+          <div class="cc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
           <div class="cc-info">
             <p class="lbl">Business Hours</p>
             <p class="val">Mon – Sat · 9:00 AM – 6:00 PM</p>
             <p class="sub">Sunday · 9:00 AM – 3:00 PM &nbsp;|&nbsp; Mabolo closes 6:30 PM on weekdays</p>
           </div>
         </div>
-        <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="cc" style="cursor:pointer">
-          <div class="cc-icon cc-b">📘</div>
+        <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="cc">
+          <div class="cc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
           <div class="cc-info">
-            <p class="lbl">Mandaue Branch</p>
+            <p class="lbl">Mandaue Branch · Main</p>
             <p class="val">09953032415 · (032) 429-4916</p>
-            <p class="sub">M.L. Quezon Ave, Manguikay · Near RPN Channel 9 · @FedExMandaue</p>
+            <p class="sub">M.L. Quezon Ave, Manguikay · Near RPN Channel 9</p>
           </div>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="cc" style="cursor:pointer">
-          <div class="cc-icon cc-r">📘</div>
+        <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="cc">
+          <div class="cc-ic o"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
           <div class="cc-info">
-            <p class="lbl">Mabolo Branch · FedEx Acceptance Center</p>
+            <p class="lbl">Mabolo Branch · Cebu City</p>
             <p class="val">09910916558 · (032) 326-8229</p>
-            <p class="sub">Mabolo, Cebu City · Message on Facebook</p>
+            <p class="sub">G/F Express Inn Bldg, M.J. Cuenco Ave, Mabolo</p>
           </div>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="cc" style="cursor:pointer">
-          <div class="cc-icon cc-g">📘</div>
+        <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="cc">
+          <div class="cc-ic g"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
           <div class="cc-info">
             <p class="lbl">Talisay Branch</p>
             <p class="val">Talisay City, Cebu</p>
-            <p class="sub">Message us on Facebook for exact address</p>
+            <p class="sub">Message us on Facebook for the exact address</p>
           </div>
         </a>
-        <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="cc" style="cursor:pointer">
-          <div class="cc-icon cc-b">📘</div>
+        <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="cc">
+          <div class="cc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
           <div class="cc-info">
             <p class="lbl">Consolacion Branch</p>
             <p class="val">Consolacion, Cebu</p>
-            <p class="sub">Message us on Facebook for exact address · @fedexconsolacion</p>
+            <p class="sub">Message us on Facebook for the exact address</p>
           </div>
         </a>
       </div>
@@ -1377,34 +1561,29 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ══════════════ REVIEWS ════════════════════════════════════ -->
-<section class="reviews-sec">
+<!-- ══════════════ REVIEWS ══════════════ -->
+<section class="sec rev-sec">
   <div class="wrap">
-    <div class="reviews-hd">
-      <div class="reviews-stars-row">
+    <div class="rev-hd">
+      <div class="rev-stars-row rv">
         <span class="rev-stars-big">★★★★★</span>
         <span class="rev-score">5.0</span>
         <span class="rev-platform">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
           Facebook Reviews
         </span>
       </div>
-      <h2 class="rv">What Our Clients Say</h2>
-      <p class="rv d1">Real recommendations from customers who shipped with us.</p>
+      <h2 class="rv d1">What our clients say</h2>
+      <p class="rv d2">Real recommendations from customers who shipped with us.</p>
     </div>
 
-    <div class="reviews-grid">
-
-      <!-- Review 1 -->
+    <div class="rev-grid">
       <div class="rev-card rv">
-        <div class="rev-card-top">
-          <div class="rev-avatar">RA</div>
-          <div class="rev-meta">
-            <div class="rev-name">Rae Arend</div>
-            <div class="rev-date">July 22, 2025</div>
-          </div>
+        <div class="rev-top">
+          <div class="rev-av">RA</div>
+          <div class="rev-meta"><div class="rev-name">Rae Arend</div><div class="rev-date">July 22, 2025</div></div>
         </div>
-        <div class="rev-card-stars">★★★★★</div>
+        <div class="rev-stars">★★★★★</div>
         <p class="rev-text">"Thank you, FedEx Mandaue Branch for the excellent service. The staff are super friendly and helpful! We successfully shipped 2 packages from Cebu to US via sea cargo. Everything went smoothly. Packages arrived in great condition. Highly recommended!"</p>
         <span class="rev-badge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -1412,16 +1591,12 @@ ul{list-style:none}
         </span>
       </div>
 
-      <!-- Review 2 -->
       <div class="rev-card rv d1">
-        <div class="rev-card-top">
-          <div class="rev-avatar">AP</div>
-          <div class="rev-meta">
-            <div class="rev-name">Andreu Palacios Padernal</div>
-            <div class="rev-date">June 22, 2025</div>
-          </div>
+        <div class="rev-top">
+          <div class="rev-av">AP</div>
+          <div class="rev-meta"><div class="rev-name">Andreu Palacios Padernal</div><div class="rev-date">June 22, 2025</div></div>
         </div>
-        <div class="rev-card-stars">★★★★★</div>
+        <div class="rev-stars">★★★★★</div>
         <p class="rev-text">"Shipped items to Iloilo from Cebu — all items were individually wrapped and fragile ones double-wrapped with bubble wrap. Very premium delivery. Staff are very accommodating and provide regular updates about the status of your parcel. Very worth it for peace of mind!"</p>
         <span class="rev-badge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -1429,16 +1604,12 @@ ul{list-style:none}
         </span>
       </div>
 
-      <!-- Review 3 -->
       <div class="rev-card rv d2">
-        <div class="rev-card-top">
-          <div class="rev-avatar">JL</div>
-          <div class="rev-meta">
-            <div class="rev-name">Jinevie M. Langres</div>
-            <div class="rev-date">November 4, 2024</div>
-          </div>
+        <div class="rev-top">
+          <div class="rev-av">JL</div>
+          <div class="rev-meta"><div class="rev-name">Jinevie M. Langres</div><div class="rev-date">November 4, 2024</div></div>
         </div>
-        <div class="rev-card-stars">★★★★★</div>
+        <div class="rev-stars">★★★★★</div>
         <p class="rev-text">"Wow, only 7 days and my package arrived in Queensland, Australia! Worth every peso spent on shipping. Thanks to all the staff — super friendly and they even gave advice on how to save on shipping fees. Highly recommended!"</p>
         <span class="rev-badge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -1446,16 +1617,12 @@ ul{list-style:none}
         </span>
       </div>
 
-      <!-- Review 4 -->
       <div class="rev-card rv d1">
-        <div class="rev-card-top">
-          <div class="rev-avatar">MB</div>
-          <div class="rev-meta">
-            <div class="rev-name">Mar Beth Foley</div>
-            <div class="rev-date">July 30, 2024</div>
-          </div>
+        <div class="rev-top">
+          <div class="rev-av">MB</div>
+          <div class="rev-meta"><div class="rev-name">Mar Beth Foley</div><div class="rev-date">July 30, 2024</div></div>
         </div>
-        <div class="rev-card-stars">★★★★★</div>
+        <div class="rev-stars">★★★★★</div>
         <p class="rev-text">"Air Mail Express Mandaue Branch is very highly recommended. I had them pack 5 boxes from Carmen, Cebu to Las Vegas, Nevada. Within 5 days it was delivered at my doorstep. Amazing service!"</p>
         <span class="rev-badge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -1463,67 +1630,61 @@ ul{list-style:none}
         </span>
       </div>
 
-      <!-- Review 5 -->
       <div class="rev-card rv d2">
-        <div class="rev-card-top">
-          <div class="rev-avatar">ZC</div>
-          <div class="rev-meta">
-            <div class="rev-name">Zenaida Duba Camre</div>
-            <div class="rev-date">May 3, 2024</div>
-          </div>
+        <div class="rev-top">
+          <div class="rev-av">ZC</div>
+          <div class="rev-meta"><div class="rev-name">Zenaida Duba Camre</div><div class="rev-date">May 3, 2024</div></div>
         </div>
-        <div class="rev-card-stars">★★★★★</div>
+        <div class="rev-stars">★★★★★</div>
         <p class="rev-text">"My parcel arrived faster than expected, and I appreciate the staff — they are very accommodating. Thank you very much. Very satisfied client and this is already my 2nd time!"</p>
         <span class="rev-badge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
           Recommends us
         </span>
       </div>
-
     </div>
 
-    <div class="reviews-footer rv">
-      <a href="https://www.facebook.com/FedExMandaue/reviews" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.887v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-        See All Reviews on Facebook
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <div class="rev-foot rv">
+      <a href="https://www.facebook.com/FedExMandaue/reviews" target="_blank" rel="noopener" class="btn btn-outline">
+        See all reviews on Facebook
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ CTA BANNER ═════════════════════════════════ -->
+<!-- ══════════════ CTA ══════════════ -->
 <section class="cta-sec">
   <div class="wrap cta-in">
-    <h2 class="rv">Ready to Ship from Cebu?</h2>
-    <p class="rv d1">Walk in to any of our 4 branches, message us on Facebook, or get a quote online — we make shipping simple, fast, and reliable.</p>
+    <h2 class="rv">Ready to ship from Cebu?</h2>
+    <p class="rv d1">Walk in to any of our 4 branches, message us on Facebook, or get a quote online — we make shipping simple, fast and reliable.</p>
     <div class="cta-btns rv d2">
-      <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-white btn-lg">📦 Get a Shipping Quote</a>
-      <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">💬 Message Us on Facebook</a>
+      <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-white btn-lg">Get a Shipping Quote</a>
+      <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-glass btn-lg">Message Us on Facebook</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ FOOTER ════════════════════════════════════ -->
+<!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="f-grid">
       <div class="f-brand">
-        <img src="logo.png" alt="Cebu Express" class="f-logo" onerror="this.style.display='none'" />
+        <div class="f-logo"><img src="logo.png" alt="Cebu Express" /></div>
         <strong>Cebu Express</strong>
-        <p class="tg">FedEx Acceptance Center with 4 branches in Cebu — Mandaue, Mabolo, Talisay &amp; Consolacion. Serving families, OFWs, and MSMEs.</p>
+        <p class="f-tag">FedEx Authorized Ship Center with 4 branches in Cebu — Mandaue, Mabolo, Talisay &amp; Consolacion. Serving families, OFWs and MSMEs.</p>
         <div class="fsoc">
-          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="fsb" aria-label="Facebook Mandaue">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="fsb" aria-label="Facebook — Mandaue">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="fsb" aria-label="Facebook Mabolo">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="fsb" aria-label="Facebook — Mabolo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="fsb" aria-label="Facebook Talisay">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="fsb" aria-label="Facebook — Talisay">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="fsb" aria-label="Facebook Consolacion">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="fsb" aria-label="Facebook — Consolacion">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
         </div>
       </div>
@@ -1531,12 +1692,21 @@ ul{list-style:none}
       <div class="f-col">
         <h5>Services</h5>
         <ul>
-          <li><a href="#services">FedEx International Priority</a></li>
-          <li><a href="#services">FedEx International Economy</a></li>
+          <li><a href="#services">International Priority</a></li>
+          <li><a href="#services">International Economy</a></li>
           <li><a href="#services">Document Courier</a></li>
           <li><a href="#services">Domestic Shipping</a></li>
-          <li><a href="#services">Bills Payment &amp; Ticketing</a></li>
-          <li><a href="#msme">MSME Export Solutions</a></li>
+          <li><a href="#services">Sea Cargo</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col">
+        <h5>Branches</h5>
+        <ul>
+          <li><a href="#branches">Mandaue City</a></li>
+          <li><a href="#branches">Mabolo, Cebu City</a></li>
+          <li><a href="#branches">Talisay City</a></li>
+          <li><a href="#branches">Consolacion</a></li>
         </ul>
       </div>
 
@@ -1544,8 +1714,8 @@ ul{list-style:none}
         <h5>Quick Links</h5>
         <ul>
           <li><a href="#track">Track Shipment</a></li>
-          <li><a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener">Get a Quote</a></li>
-          <li><a href="#branches">Our Branches</a></li>
+          <li><a href="#sameday">Same Day Delivery</a></li>
+          <li><a href="#rates">Rates</a></li>
           <li><a href="#msme">MSME Guide</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
@@ -1554,124 +1724,154 @@ ul{list-style:none}
 
     <div class="f-bot">
       <p>© 2026 Cebu Express. Mandaue · Mabolo · Talisay · Consolacion, Cebu, Philippines. All rights reserved.</p>
-      <div class="f-badge"><span class="s">★</span> FedEx Acceptance Center</div>
+      <div class="f-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        FedEx Authorized Ship Center
+      </div>
     </div>
   </div>
 </footer>
 
-<!-- ══════════════ FLOATING BUTTONS ════════════════════════════ -->
+<!-- ══════════════ FLOATING ══════════════ -->
 <div class="float-bar">
+  <button class="fb-btn fb-top" id="totop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
   <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="fb-btn fb-msg" aria-label="Messenger">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.906 1.378 5.5 3.535 7.257V22l3.226-1.773c.862.238 1.776.367 2.72.367 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.023 12.448l-2.55-2.72-4.976 2.72 5.473-5.81 2.613 2.72 4.912-2.72-5.472 5.81z"/></svg>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.906 1.378 5.5 3.535 7.257V22l3.226-1.773c.862.238 1.776.367 2.72.367 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.023 12.448l-2.55-2.72-4.976 2.72 5.473-5.81 2.613 2.72 4.912-2.72-5.472 5.81z"/></svg>
   </a>
   <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="fb-btn fb-fb" aria-label="Facebook">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
   </a>
 </div>
 
 <script>
-// Nav hamburger
+// ── Nav ──────────────────────────────────────────
 const hbg=document.getElementById('hbg'),mdraw=document.getElementById('mdraw');
-function cm(){hbg.classList.remove('op');mdraw.classList.remove('op')}
-hbg.addEventListener('click',()=>{hbg.classList.toggle('op');mdraw.classList.toggle('op')});
+function cm(){hbg.classList.remove('op');mdraw.classList.remove('op');hbg.setAttribute('aria-expanded','false')}
+hbg.addEventListener('click',()=>{
+  const open=hbg.classList.toggle('op');
+  mdraw.classList.toggle('op',open);
+  hbg.setAttribute('aria-expanded',String(open));
+});
 
-// Sticky nav shadow
-window.addEventListener('scroll',()=>{document.getElementById('mnav').classList.toggle('sc',scrollY>10)});
+// ── Scroll: nav shadow, progress bar, back-to-top ─
+const nav=document.getElementById('mnav'),prog=document.getElementById('prog'),totop=document.getElementById('totop');
+function onScroll(){
+  const y=window.scrollY;
+  nav.classList.toggle('sc',y>10);
+  totop.classList.toggle('show',y>700);
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  prog.style.width=(h>0?(y/h)*100:0)+'%';
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
 
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:.1});
+// ── Reveal on scroll ─────────────────────────────
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}
+}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Stats counter animation
+// ── Counters ─────────────────────────────────────
 function animateCounter(el){
   const target=parseFloat(el.dataset.target)||0;
-  const isDecimal=el.dataset.decimal==='1';
-  const duration=1800;
-  const start=performance.now();
+  const dec=el.dataset.decimal==='1';
+  const dur=1700,start=performance.now();
   function tick(now){
-    const t=Math.min((now-start)/duration,1);
-    const ease=1-Math.pow(1-t,3);
-    const val=ease*target;
-    el.textContent=isDecimal?val.toFixed(1):Math.floor(val).toLocaleString();
+    const t=Math.min((now-start)/dur,1);
+    const e=1-Math.pow(1-t,3);
+    el.textContent=dec?(e*target).toFixed(1):Math.floor(e*target).toLocaleString();
     if(t<1)requestAnimationFrame(tick);
-    else el.textContent=isDecimal?target.toFixed(1):target.toLocaleString();
+    else el.textContent=dec?target.toFixed(1):target.toLocaleString();
   }
   requestAnimationFrame(tick);
 }
-const statsObs=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){
-    e.target.querySelectorAll('[data-target]').forEach(animateCounter);
-    statsObs.unobserve(e.target);
-  }
+const cObs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.querySelectorAll('.cnt').forEach(animateCounter);cObs.unobserve(e.target)}
 }),{threshold:.3});
-const statsSec=document.querySelector('.stats-sec');
-if(statsSec)statsObs.observe(statsSec);
+document.querySelectorAll('.hero-stats').forEach(el=>cObs.observe(el));
 
-// Highlight today in all hours tables
-const day=new Date().getDay(); // 0=Sun,1-5=weekday,6=Sat
+// ── Performance bars ─────────────────────────────
+const bObs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.querySelectorAll('.sb-fill').forEach((f,i)=>{
+      setTimeout(()=>{f.style.width=f.dataset.w+'%'},i*130);
+    });
+    bObs.unobserve(e.target);
+  }
+}),{threshold:.35});
+const wv=document.getElementById('wvbars');
+if(wv)bObs.observe(wv);
+
+// ── Highlight today in hours tables ──────────────
+const day=new Date().getDay(); // 0=Sun, 1-5=weekday, 6=Sat
 ['ht-mandaue','ht-mabolo','ht-talisay','ht-consolacion'].forEach(id=>{
   const t=document.getElementById(id);
   if(!t)return;
-  let row=null;
+  let row;
   if(day>=1&&day<=5)row=t.querySelector('[data-d="1"]');
   else if(day===6)row=t.querySelector('[data-d="6"]');
   else row=t.querySelector('[data-d="0"]');
   if(row)row.classList.add('td');
 });
 
-// Track
+// ── Tracking ─────────────────────────────────────
 function doTrack(e){
   e.preventDefault();
-  const n=document.getElementById('tnum').value.trim().replace(/\s+/g,'');
-  if(!n){document.getElementById('tnum').focus();return}
-  window.open('https://www.fedex.com/fedextrack/?trknbr='+encodeURIComponent(n),'_blank','noopener')
+  const el=document.getElementById('tnum');
+  const n=el.value.trim().replace(/\s+/g,'');
+  if(!n){el.focus();return}
+  window.open('https://www.fedex.com/fedextrack/?trknbr='+encodeURIComponent(n),'_blank','noopener');
 }
 
-// Same Day delivery — speed toggle
+// ── Same Day calculator ──────────────────────────
 function selectSday(hrs){
   document.querySelectorAll('.sday-opt').forEach(o=>o.classList.remove('active'));
   document.getElementById('sdopt-'+hrs).classList.add('active');
   calcSday();
 }
+document.querySelectorAll('.sday-opt').forEach(o=>{
+  o.addEventListener('keydown',ev=>{
+    if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();o.click()}
+  });
+});
 
-// Same Day delivery — cost calculator
 function calcSday(){
   const is48=document.getElementById('sdopt-48').classList.contains('active');
-  const BASE=is48 ? 2500 : 3200, PER_KG=300;
+  const BASE=is48?2500:3200, PER_KG=300;
   const type=document.querySelector('input[name="sdtype"]:checked').value;
   const wrow=document.getElementById('sday-wrow');
   const priceEl=document.getElementById('sday-price');
   const breakEl=document.getElementById('sday-break');
 
-  // Update radio label styles
-  document.querySelectorAll('.sday-rlbl').forEach(l=>l.classList.remove('sel'));
+  document.querySelectorAll('.seg label').forEach(l=>l.classList.remove('sel'));
   const checked=document.querySelector('input[name="sdtype"]:checked');
-  if(checked) checked.closest('.sday-rlbl').classList.add('sel');
+  if(checked)checked.closest('label').classList.add('sel');
+
+  const peso=n=>'₱'+n.toLocaleString();
 
   if(type==='docs'){
     wrow.style.display='none';
-    priceEl.textContent='₱3,200';
+    priceEl.textContent=peso(BASE);
     breakEl.textContent='Flat rate — document shipment, any weight';
     return;
   }
 
-  // Parcel
   wrow.style.display='block';
   const kg=parseFloat(document.getElementById('sday-kg').value);
   if(!kg||kg<=0){
-    priceEl.textContent='₱3,200';
+    priceEl.textContent=peso(BASE);
     breakEl.textContent='Base rate — first kilo included';
     return;
   }
   const excess=Math.max(0,Math.ceil(kg-1));
-  const total=BASE+excess*PER_KG;
-  priceEl.textContent='₱'+total.toLocaleString();
-  if(excess===0){
-    breakEl.textContent='₱3,200 base rate (up to 1 kg)';
-  } else {
-    breakEl.textContent='₱3,200 base + ₱'+( excess*PER_KG).toLocaleString()+' excess ('+excess+' kg × ₱300/kg)';
-  }
+  priceEl.textContent=peso(BASE+excess*PER_KG);
+  breakEl.textContent = excess===0
+    ? peso(BASE)+' base rate (up to 1 kg)'
+    : peso(BASE)+' base + '+peso(excess*PER_KG)+' excess ('+excess+' kg × ₱300/kg)';
 }
+calcSday();
 </script>
 </body>
 </html>

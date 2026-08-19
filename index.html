@@ -417,8 +417,12 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
 .sday-res-break{font-size:.77rem;color:rgba(255,255,255,.5);margin-bottom:.35rem;line-height:1.55}
 .sday-res-note{font-size:.68rem;color:rgba(255,255,255,.3);font-style:italic;line-height:1.5}
 
-.sday-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
-.sday-ctas .btn{flex:1;min-width:150px}
+.sday-book-lbl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:.65rem}
+/* 2x2 so all four branches get equal-weight booking CTAs */
+.sday-ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+@media(max-width:400px){.sday-ctas{grid-template-columns:1fr}}
+.sday-ctas .btn{width:100%;padding-inline:14px}
 .sday-info{border-top:1px solid rgba(255,255,255,.1);padding-top:1.35rem;display:grid;
   grid-template-columns:1fr 1fr;gap:1.25rem}
 @media(max-width:520px){.sday-info{grid-template-columns:1fr}}
@@ -526,28 +530,6 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
 .wvbox .l{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:5px}
 .wv-note{position:relative;z-index:2;font-size:.71rem;color:rgba(255,255,255,.42);
   border-top:1px solid rgba(255,255,255,.12);padding-top:1rem;line-height:1.6}
-
-/* ═══════════════════════════════════════════════════
-   GALLERY
-═══════════════════════════════════════════════════ */
-.gal-mosaic{display:grid;grid-template-columns:1.5fr 1fr;gap:1rem;margin-top:3rem}
-@media(max-width:720px){.gal-mosaic{grid-template-columns:1fr}}
-.gal-col{display:flex;flex-direction:column;gap:1rem}
-.gal-item{border-radius:var(--r);overflow:hidden;position:relative;background:var(--n-200);flex:1}
-.gal-item img{width:100%;height:100%;min-height:180px;object-fit:cover;
-  transition:transform .7s cubic-bezier(.4,0,.2,1)}
-.gal-item:hover img{transform:scale(1.07)}
-.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,9,26,.82) 0%,transparent 55%);
-  display:flex;align-items:flex-end;padding:1rem 1.15rem;pointer-events:none}
-.gal-ov span{color:#fff;font-size:.8rem;font-weight:600;line-height:1.4}
-.gal-row2{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-@media(max-width:720px){.gal-row2{grid-template-columns:1fr 1fr}}
-@media(max-width:460px){.gal-row2{grid-template-columns:1fr}}
-.gal-row2 .gal-item{min-height:165px;flex:none}
-.gal-note{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:2rem;
-  font-size:.85rem;color:var(--muted);flex-wrap:wrap;text-align:center}
-.gal-note a{color:var(--blue);font-weight:700}
-.gal-note a:hover{text-decoration:underline}
 
 /* ═══════════════════════════════════════════════════
    MSME
@@ -1074,9 +1056,12 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
           <div class="sday-res-note">* Final rate confirmed upon booking. Drop-off at branch or pickup available upon request.</div>
         </div>
 
+        <p class="sday-book-lbl">Book at any branch</p>
         <div class="sday-ctas">
-          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-orange">Book — Mandaue</a>
-          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-glass">Book — Mabolo</a>
+          <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener" class="btn btn-orange">Mandaue</a>
+          <a href="https://www.facebook.com/profile.php?id=100092504930610" target="_blank" rel="noopener" class="btn btn-glass">Mabolo</a>
+          <a href="https://www.facebook.com/profile.php?id=100086891408313" target="_blank" rel="noopener" class="btn btn-glass">Talisay</a>
+          <a href="https://www.facebook.com/fedexconsolacion" target="_blank" rel="noopener" class="btn btn-glass">Consolacion</a>
         </div>
 
         <div class="sday-info">
@@ -1089,6 +1074,16 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
             <strong><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Mabolo Branch</strong>
             <span>09910916558 · (032) 326-8229</span>
             <span>G/F Express Inn Bldg, M.J. Cuenco Ave</span>
+          </div>
+          <div class="sday-br">
+            <strong><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Talisay Branch</strong>
+            <span>Talisay City, Cebu</span>
+            <span>Message on Facebook for the exact address</span>
+          </div>
+          <div class="sday-br">
+            <strong><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Consolacion Branch</strong>
+            <span>Consolacion, Cebu</span>
+            <span>Message on Facebook for the exact address</span>
           </div>
         </div>
       </div>
@@ -1315,60 +1310,6 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
   </div>
 </section>
 
-<!-- ══════════════ GALLERY ══════════════ -->
-<section class="sec" style="background:var(--n-50)">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow rv">Our Service in Action</p>
-      <h2 class="sec-title rv d1">Trusted by families, OFWs &amp; businesses.</h2>
-      <p class="sec-desc rv d2">Professional handling, careful packaging and real-time updates — every shipment, every time.</p>
-    </div>
-
-    <div class="gal-mosaic rv">
-      <div class="gal-col">
-        <div class="gal-item" style="min-height:270px">
-          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Packages being handled for international shipping">
-          <div class="gal-ov"><span>FedEx International Shipping — Worldwide Coverage</span></div>
-        </div>
-        <div class="gal-item" style="min-height:185px">
-          <img src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Packages ready for delivery">
-          <div class="gal-ov"><span>Every parcel carefully prepared for its journey</span></div>
-        </div>
-      </div>
-      <div class="gal-col">
-        <div class="gal-item" style="min-height:205px">
-          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Aircraft in flight">
-          <div class="gal-ov"><span>Same Day Air Delivery — Cebu ⇌ Manila</span></div>
-        </div>
-        <div class="gal-item" style="min-height:250px">
-          <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&w=700&q=75" loading="lazy" alt="Delivery courier at work">
-          <div class="gal-ov"><span>Domestic Courier via SPX Express</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gal-row2 rv d2">
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Delivery boxes stacked">
-        <div class="gal-ov"><span>Packaging &amp; Handling Included</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Cargo aircraft on tarmac">
-        <div class="gal-ov"><span>Airport-to-Airport — Davao · Iloilo · CDO</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=600&q=75" loading="lazy" alt="Package tracking on a device">
-        <div class="gal-ov"><span>Real-Time FedEx Tracking Every Step</span></div>
-      </div>
-    </div>
-
-    <p class="gal-note rv d3">
-      See real shipment photos from our customers
-      <a href="https://www.facebook.com/FedExMandaue" target="_blank" rel="noopener">Visit our Facebook page →</a>
-    </p>
-  </div>
-</section>
-
 <!-- ══════════════ MSME ══════════════ -->
 <section class="sec msme-sec" id="msme">
   <div class="wrap">
@@ -1441,7 +1382,7 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
     <div class="bmap-grid">
       <div class="bmap-frame rv">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125453.13321928!2d123.82789515!3d10.33611205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sph!4v1700000000001"
+          src="https://maps.google.com/maps?q=Mandaue%20City%2C%20Cebu%2C%20Philippines&z=11&hl=en&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="All Cebu Express branches in Greater Cebu">
         </iframe>
@@ -1509,7 +1450,7 @@ h1,h2,h3,h4,.display{font-family:'Sora','Inter',sans-serif;letter-spacing:-.03em
     <div class="loc-grid">
       <div class="map-wrap rv d1">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.3!2d123.9265!3d10.3312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99b937c7375fb%3A0x3a0c08c3f7a89e73!2sManguikay%2C+Mandaue+City%2C+Cebu!5e0!3m2!1sen!2sph!4v1"
+          src="https://maps.google.com/maps?q=M.L.%20Quezon%20Avenue%2C%20Manguikay%2C%20Mandaue%20City%2C%20Cebu&z=16&hl=en&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Cebu Express Mandaue">
         </iframe>

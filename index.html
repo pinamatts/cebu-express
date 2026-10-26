@@ -203,7 +203,7 @@ section{padding:clamp(72px,10vw,128px) 0}
 .p-tile{border-radius:22px;padding:clamp(26px,4vw,46px);position:relative;overflow:hidden;min-height:420px;display:flex;flex-direction:column}
 .p-dropgo{background:var(--cobalt);color:var(--on-cobalt)}
 .p-dropgo h3,.p-ferry h3{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:850;font-variation-settings:"wdth" 110;letter-spacing:-.025em;line-height:1;max-width:14ch}
-.p-dropgo p{color:rgba(244,246,255,.86);max-width:44ch;margin-top:18px}
+.p-dropgo p{color:rgba(244,246,255,.86);max-width:44ch;margin:18px 0 36px}
 .routes{margin-top:auto;padding-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(244,246,255,.25)}
 .routes div{padding:16px 12px 0 0}
 .routes b{display:block;font-size:1.15rem;font-variation-settings:"wdth" 108}
@@ -212,14 +212,18 @@ section{padding:clamp(72px,10vw,128px) 0}
 .bus-line::after{content:"";position:absolute;inset:44px;border-radius:50%;border:1.5px dashed rgba(244,246,255,.18)}
 .p-ferry{background:var(--surface);border:1px solid var(--line)}
 .p-ferry p{color:var(--ink-2);margin-top:18px;max-width:40ch}
-.p-ferry .via-barkota{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:700;font-size:.92rem;padding:8px 14px;border-radius:999px;background:var(--sunk);align-self:flex-start}
-.p-ferry .via-barkota .ph{color:var(--cobalt);font-size:1.15rem}
+.p-ferry .via-barkota{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-weight:600;font-size:.9rem;color:var(--muted);align-self:flex-start}
+.plate{display:inline-flex;align-items:center;background:#fff;border-radius:14px;padding:12px 16px;align-self:flex-start;margin-bottom:30px;box-shadow:0 12px 30px -16px rgba(5,14,60,.6)}
+.plate img{height:64px;width:auto}
+.plate-sm{margin:0;padding:8px 12px;border-radius:10px;box-shadow:none;border:1px solid var(--line)}
+.plate-sm img{height:26px}
 .marquee{margin:auto calc(clamp(26px,4vw,46px)*-1) 0;padding-top:30px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.marquee-track{display:flex;gap:10px;width:max-content;animation:slide 48s linear infinite}
-.marquee span{white-space:nowrap;font-weight:700;font-variation-settings:"wdth" 104;padding:10px 16px;border:1px solid var(--line-2);border-radius:999px;font-size:.92rem}
+.marquee-track{display:grid;grid-template-rows:repeat(2,84px);grid-auto-flow:column;grid-auto-columns:132px;gap:10px;padding-right:10px;width:max-content;animation:slide 60s linear infinite}
+.marquee .logo{width:132px;height:84px;background:#fff;border-radius:14px;border:1px solid var(--line);display:grid;place-items:center;padding:10px 14px}
+.marquee .logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
 .marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes slide{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;padding:0 clamp(26px,4vw,46px)}.marquee{mask-image:none;-webkit-mask-image:none}.marquee-track [aria-hidden]{display:none}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none;display:flex;flex-wrap:wrap;width:auto;padding:0 clamp(26px,4vw,46px)}.marquee{mask-image:none;-webkit-mask-image:none}.marquee-track [aria-hidden]{display:none}}
 @media (max-width:900px){.partners{grid-template-columns:1fr}.p-tile{min-height:0}.routes{grid-template-columns:repeat(2,1fr)}}
 
 /* packing */
@@ -553,8 +557,9 @@ section{padding:clamp(72px,10vw,128px) 0}
     <div class="partners">
       <article class="p-tile p-dropgo rv" id="drop-and-go">
         <div class="bus-line" aria-hidden="true"></div>
-        <h3>Victory Liner Drop&nbsp;&amp;&nbsp;Go.</h3>
-        <p>Send boxes, bagahe and paninda by bus cargo, nationwide. Bring it to any Cebu Express branch and we book it onto Victory Liner's Drop &amp; Go network for you.</p>
+        <span class="plate"><img src="img/partners/dropandgo.png" alt="Victory Liner Drop &amp; Go" width="294" height="100"></span>
+        <h3>Bus cargo, nationwide, from your branch.</h3>
+        <p>Send boxes, bagahe and paninda through Victory Liner Drop &amp; Go. Bring it to any Cebu Express branch and we book it onto their network for you.</p>
         <div class="routes">
           <div><b>Luzon</b><span>CEBU TO</span></div>
           <div><b>Bicol</b><span>CEBU TO</span></div>
@@ -565,11 +570,45 @@ section{padding:clamp(72px,10vw,128px) 0}
       <article class="p-tile p-ferry rv" id="ferry">
         <h3>Ferry tickets at the counter.</h3>
         <p>Going home for the holidays or island hopping? Skip the port queue. Any branch can book your seat, with schedules and fares from many operators.</p>
-        <span class="via-barkota"><i class="ph ph-ticket"></i>Booked through Barkota</span>
-        <div class="marquee" aria-label="Ferry operators we book">
+        <span class="via-barkota">Booked through <span class="plate plate-sm"><img src="img/partners/barkota.png" alt="Barkota Ferry Booking" width="640" height="149"></span></span>
+        <div class="marquee" role="group" aria-label="Ferry lines we book">
           <div class="marquee-track">
-            <span>SuperCat</span><span>Starlite Ferries</span><span>Trans-Asia Shipping Lines</span><span>Lite Ferries</span><span>Jomalia Shipping</span><span>Medallion Transport</span><span>Seacat</span><span>Evaristo &amp; Sons</span><span>Super Shuttle Ferry</span><span>Montenegro Lines</span><span>Island Water</span><span>Lapu-Lapu Shipping Lines</span><span>Clemer</span>
-            <span aria-hidden="true">SuperCat</span><span aria-hidden="true">Starlite Ferries</span><span aria-hidden="true">Trans-Asia Shipping Lines</span><span aria-hidden="true">Lite Ferries</span><span aria-hidden="true">Jomalia Shipping</span><span aria-hidden="true">Medallion Transport</span><span aria-hidden="true">Seacat</span><span aria-hidden="true">Evaristo &amp; Sons</span><span aria-hidden="true">Super Shuttle Ferry</span><span aria-hidden="true">Montenegro Lines</span><span aria-hidden="true">Island Water</span><span aria-hidden="true">Lapu-Lapu Shipping Lines</span><span aria-hidden="true">Clemer</span>
+            <span class="logo"><img src="img/partners/supercat.png" alt="SuperCat" width="217" height="72" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/starlite.png" alt="Starlite Ferries" width="208" height="128" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/transasia.png" alt="Trans-Asia Shipping Lines" width="213" height="94" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/lite.png" alt="Lite Ferries" width="193" height="123" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/jomalia.png" alt="Jomalia Shipping Corporation" width="225" height="127" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/medallion.png" alt="Medallion Transport" width="237" height="81" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/aleson.png" alt="Ferry partner" width="137" height="143" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/seacat.png" alt="Seacat" width="188" height="85" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/evaristo.png" alt="Evaristo and Sons Sea Transport" width="206" height="151" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/ferry-h.png" alt="Ferry partner" width="139" height="129" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/super-shuttle.png" alt="Super Shuttle Ferry" width="167" height="143" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/ff.png" alt="Ferry partner" width="153" height="148" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/ferry-flag.png" alt="Ferry partner" width="208" height="202" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/montenegro.png" alt="Montenegro Lines" width="210" height="192" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/ksli.png" alt="KSLI" width="206" height="173" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/island-water.png" alt="Island Water by Shogun Ships" width="205" height="128" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/lslc.png" alt="Lapu-Lapu Shipping Lines Corporation" width="254" height="125" loading="lazy"></span>
+            <span class="logo"><img src="img/partners/clemer.png" alt="Clemer Shipping Lines" width="248" height="148" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/supercat.png" alt="" width="217" height="72" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/starlite.png" alt="" width="208" height="128" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/transasia.png" alt="" width="213" height="94" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/lite.png" alt="" width="193" height="123" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/jomalia.png" alt="" width="225" height="127" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/medallion.png" alt="" width="237" height="81" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/aleson.png" alt="" width="137" height="143" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/seacat.png" alt="" width="188" height="85" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/evaristo.png" alt="" width="206" height="151" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/ferry-h.png" alt="" width="139" height="129" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/super-shuttle.png" alt="" width="167" height="143" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/ff.png" alt="" width="153" height="148" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/ferry-flag.png" alt="" width="208" height="202" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/montenegro.png" alt="" width="210" height="192" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/ksli.png" alt="" width="206" height="173" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/island-water.png" alt="" width="205" height="128" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/lslc.png" alt="" width="254" height="125" loading="lazy"></span>
+            <span class="logo" aria-hidden="true"><img src="img/partners/clemer.png" alt="" width="248" height="148" loading="lazy"></span>
           </div>
         </div>
       </article>

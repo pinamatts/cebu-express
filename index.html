@@ -165,37 +165,32 @@ section{padding:clamp(72px,10vw,128px) 0}
   .map{height:280px}
 }
 
-/* finder + board */
-.finder{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,44px);box-shadow:var(--shadow)}
-.finder-top{display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;margin:34px 0 28px}
-.q{font-weight:700;font-size:.95rem;margin-bottom:12px;display:block}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1.5px solid var(--line-2);background:transparent;border-radius:999px;padding:9px 15px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background-color .2s,border-color .2s,color .2s}
-.chip:hover{border-color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.chip .ph{font-size:1.1rem}
-.board{background:var(--board);color:var(--board-ink);border-radius:var(--r);padding:8px 0;font-family:var(--mono);overflow:hidden}
-.board-head,.lane{display:grid;grid-template-columns:1.25fr 1.5fr .95fr .5fr;gap:16px;padding:14px 22px;align-items:center}
-.board-head{font-size:.68rem;letter-spacing:.16em;color:var(--board-dim);text-transform:uppercase;border-bottom:1px solid rgba(232,236,247,.08)}
-.lane{border-bottom:1px solid rgba(232,236,247,.06);font-size:.86rem;transition:opacity .35s,background-color .35s}
-.lane:last-child{border-bottom:0}
-.lane .dest{font-weight:600;letter-spacing:.02em;text-transform:uppercase}
-.lane .svc{color:#C9D2EC;font-family:var(--display);font-size:.95rem;font-weight:600}
-.lane .svc small{display:block;font-family:var(--mono);font-size:.72rem;color:var(--board-dim);font-weight:400;margin-top:2px}
-.lane .eta{color:#FF9A62;font-weight:600}
-.lane .via{color:var(--board-dim);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-align:right}
-.lane.off{opacity:.18}
-.lane.hit{background:rgba(85,118,255,.1)}
-.board-foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;margin-top:22px}
-.board-foot p{font-weight:600;color:var(--ink-2)}
-.board-foot p b{color:var(--ink)}
-@media (max-width:820px){
-  .finder-top{grid-template-columns:1fr}
-  .board-head{display:none}
-  .lane{grid-template-columns:1fr auto;gap:4px 12px;padding:16px 18px}
-  .lane .dest{grid-column:1/-1;font-size:.74rem;color:var(--board-dim)}
-  .lane .via{display:none}
-  .lane .eta{text-align:right;font-size:.8rem}
+/* service picker */
+.picker{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,48px);box-shadow:var(--shadow)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:30px 0 26px;padding:6px;background:var(--sunk);border-radius:18px}
+.tabs button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:10px 14px;border:0;border-radius:13px;background:transparent;font-weight:700;font-size:1rem;color:var(--ink-2);cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s}
+.tabs button .ph{font-size:1.35rem}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--cobalt);color:var(--on-cobalt);box-shadow:0 10px 24px -14px rgba(14,50,209,.8)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc-grid.two{grid-template-columns:repeat(2,1fr)}
+.svc{border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;background:var(--paper)}
+.svc-time{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.svc-time span{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;font-size:.95rem;font-weight:650;color:var(--orange-ink)}
+.svc-time b{font-size:clamp(2.3rem,4vw,3rem);line-height:1;font-weight:850;font-variation-settings:"wdth" 110;letter-spacing:-.03em;color:var(--orange-ink)}
+.svc-time .ph{order:2;font-size:1.6rem;color:var(--cobalt);background:var(--sunk);width:46px;height:46px;border-radius:12px;display:grid;place-items:center}
+.svc h3{font-size:1.2rem}
+.svc p{color:var(--ink-2);font-size:.95rem;line-height:1.5}
+.good{list-style:none;margin:auto 0 0;padding:12px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.good li{font-size:.78rem;font-weight:650;padding:5px 10px;border-radius:999px;background:var(--sunk);color:var(--ink-2)}
+.also{margin-top:16px;font-size:.92rem;color:var(--muted)}
+.picker-foot{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-top:28px;padding-top:24px;border-top:1px dashed var(--line-2)}
+.picker-foot p{font-weight:600;color:var(--ink-2);max-width:62ch}
+@media (prefers-reduced-motion:no-preference){.panel:not([hidden]) .svc{animation:rise .5s cubic-bezier(.16,1,.3,1) both}.panel .svc:nth-child(2){animation-delay:.05s}.panel .svc:nth-child(3){animation-delay:.1s}}
+@media (max-width:900px){.svc-grid,.svc-grid.two{grid-template-columns:1fr}}
+@media (max-width:640px){
+  .tabs{grid-template-columns:1fr;gap:4px}
+  .tabs button{justify-content:flex-start;min-height:52px}
 }
 
 /* partners */
@@ -212,11 +207,9 @@ section{padding:clamp(72px,10vw,128px) 0}
 .bus-line::after{content:"";position:absolute;inset:44px;border-radius:50%;border:1.5px dashed rgba(244,246,255,.18)}
 .p-ferry{background:var(--surface);border:1px solid var(--line)}
 .p-ferry p{color:var(--ink-2);margin-top:18px;max-width:40ch}
-.p-ferry .via-barkota{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-weight:600;font-size:.9rem;color:var(--muted);align-self:flex-start}
 .plate{display:inline-flex;align-items:center;background:#fff;border-radius:14px;padding:12px 16px;align-self:flex-start;margin-bottom:30px;box-shadow:0 12px 30px -16px rgba(5,14,60,.6)}
 .plate img{height:64px;width:auto}
-.plate-sm{margin:0;padding:8px 12px;border-radius:10px;box-shadow:none;border:1px solid var(--line)}
-.plate-sm img{height:26px}
+
 .marquee{margin:auto calc(clamp(26px,4vw,46px)*-1) 0;padding-top:30px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .marquee-track{display:grid;grid-template-rows:repeat(2,84px);grid-auto-flow:column;grid-auto-columns:132px;gap:10px;padding-right:10px;width:max-content;animation:slide 60s linear infinite}
 .marquee .logo{width:132px;height:84px;background:#fff;border-radius:14px;border:1px solid var(--line);display:grid;place-items:center;padding:10px 14px}
@@ -400,7 +393,7 @@ section{padding:clamp(72px,10vw,128px) 0}
   <div class="wrap">
     <p><i class="ph ph-seal-check"></i>FedEx Authorized ShipCenter</p>
     <p><i class="ph ph-bus"></i>Victory Liner Drop &amp; Go</p>
-    <p><i class="ph ph-boat"></i>Ferry tickets with Barkota</p>
+    <p><i class="ph ph-boat"></i>Ferry tickets at every branch</p>
     <p><i class="ph ph-clock"></i>Open 7 days a week</p>
   </div>
 </div>
@@ -478,73 +471,78 @@ section{padding:clamp(72px,10vw,128px) 0}
 
 <section id="services" style="padding-top:0">
   <div class="wrap">
-    <div class="finder">
-      <span class="kicker">Shipping finder</span>
+    <div class="picker">
+      <span class="kicker">Shipping options</span>
       <h2>Where is it going?</h2>
-      <p class="lede">Pick what you're sending and where. The board lights up the ways we can send it.</p>
-      <div class="finder-top">
-        <div>
-          <span class="q" id="qWhat">What are you sending?</span>
-          <div class="chips" role="group" aria-labelledby="qWhat" data-filter="what">
-            <button class="chip" aria-pressed="false" data-v="docs"><i class="ph ph-file-text"></i>Documents</button>
-            <button class="chip" aria-pressed="false" data-v="parcel"><i class="ph ph-package"></i>A box or parcel</button>
-            <button class="chip" aria-pressed="false" data-v="big"><i class="ph ph-cube"></i>Big or fragile</button>
-            <button class="chip" aria-pressed="false" data-v="luggage"><i class="ph ph-suitcase-rolling"></i>Luggage</button>
-            <button class="chip" aria-pressed="false" data-v="me"><i class="ph ph-person-simple-walk"></i>Myself</button>
-          </div>
-        </div>
-        <div>
-          <span class="q" id="qWhere">Where to?</span>
-          <div class="chips" role="group" aria-labelledby="qWhere" data-filter="where">
-            <button class="chip" aria-pressed="false" data-v="manila"><i class="ph ph-buildings"></i>Metro Manila</button>
-            <button class="chip" aria-pressed="false" data-v="ph"><i class="ph ph-map-trifold"></i>Elsewhere in the Philippines</button>
-            <button class="chip" aria-pressed="false" data-v="abroad"><i class="ph ph-globe-hemisphere-east"></i>Abroad</button>
-          </div>
+      <div class="tabs" role="tablist" aria-label="Destination">
+        <button role="tab" id="t-manila" aria-controls="p-manila" aria-selected="true"><i class="ph ph-buildings"></i><span>Metro Manila</span></button>
+        <button role="tab" id="t-ph" aria-controls="p-ph" aria-selected="false" tabindex="-1"><i class="ph ph-map-trifold"></i><span>Rest of the Philippines</span></button>
+        <button role="tab" id="t-abroad" aria-controls="p-abroad" aria-selected="false" tabindex="-1"><i class="ph ph-globe-hemisphere-east"></i><span>Abroad</span></button>
+      </div>
+      <div class="panel" role="tabpanel" id="p-manila" aria-labelledby="t-manila">
+        <div class="svc-grid two">
+          <article class="svc" id="same-day">
+            <div class="svc-time"><i class="ph ph-lightning"></i><span><b>24</b>hrs</span></div>
+            <h3>Same-day delivery</h3>
+            <p>Door to door anywhere in Metro Manila: homes, offices and embassies.</p>
+            <ul class="good" aria-label="Good for"><li>Documents</li><li>Small parcels</li></ul>
+          </article>
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-truck"></i><span><b>48</b>hrs</span></div>
+            <h3>Next-day delivery</h3>
+            <p>For bigger boxes that can wait a day. Also runs Manila to Cebu.</p>
+            <ul class="good" aria-label="Good for"><li>Parcels</li><li>Boxes</li></ul>
+          </article>
         </div>
       </div>
-
-      <div class="board" role="table" aria-label="Cebu Express services">
-        <div class="board-head" role="row"><span role="columnheader">To</span><span role="columnheader">Service</span><span role="columnheader">Arrives</span><span role="columnheader">Via</span></div>
-        <div class="lane" role="row" id="same-day" data-what="docs parcel" data-where="manila">
-          <span class="dest" role="cell">Metro Manila</span><span class="svc" role="cell">Same-day delivery<small>Door to door. Home, office or embassy</small></span><span class="eta" role="cell">Within 24 hrs</span><span class="via" role="cell">Air</span>
+      <div class="panel" role="tabpanel" id="p-ph" aria-labelledby="t-ph" hidden>
+        <div class="svc-grid">
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-airplane-tilt"></i><span><b>3-7</b>days</span></div>
+            <h3>Rush or standard</h3>
+            <p>Davao, CDO, Bohol, Pampanga and the rest of the country, both directions. Rush is 3-4 days, standard 5-7.</p>
+            <ul class="good" aria-label="Good for"><li>Documents</li><li>Parcels</li><li>Boxes</li></ul>
+          </article>
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-bus"></i><span><b>By bus</b></span></div>
+            <h3>Victory Liner Drop &amp; Go</h3>
+            <p>Boxes, bagahe and paninda by bus to Luzon, Bicol, Visayas and Mindanao.</p>
+            <ul class="good" aria-label="Good for"><li>Boxes</li><li>Bulky items</li></ul>
+          </article>
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-boat"></i><span><b>7-14</b>days</span></div>
+            <h3>Sea cargo</h3>
+            <p>The cheapest way to move heavy or bulky loads to Visayas and Mindanao ports.</p>
+            <ul class="good" aria-label="Good for"><li>Heavy loads</li><li>Furniture</li></ul>
+          </article>
         </div>
-        <div class="lane" role="row" data-what="docs parcel big" data-where="manila">
-          <span class="dest" role="cell">Metro Manila</span><span class="svc" role="cell">Next-day delivery<small>Also Manila to Cebu</small></span><span class="eta" role="cell">48 hrs</span><span class="via" role="cell">Air</span>
-        </div>
-        <div class="lane" role="row" data-what="parcel big luggage" data-where="manila ph">
-          <span class="dest" role="cell">Luzon, Bicol, Vis-Min</span><span class="svc" role="cell">Victory Liner Drop &amp; Go<small>Boxes, bagahe and paninda</small></span><span class="eta" role="cell">Ask a branch</span><span class="via" role="cell">Bus cargo</span>
-        </div>
-        <div class="lane" role="row" data-what="docs parcel big" data-where="ph">
-          <span class="dest" role="cell">Davao, CDO, Bohol, Pampanga</span><span class="svc" role="cell">Rush or standard domestic<small>Nationwide, both directions</small></span><span class="eta" role="cell">3-7 days</span><span class="via" role="cell">Air</span>
-        </div>
-        <div class="lane" role="row" data-what="parcel big" data-where="ph">
-          <span class="dest" role="cell">Davao, Iloilo, CDO</span><span class="svc" role="cell">Airport to airport<small>Cargo you pick up at arrivals</small></span><span class="eta" role="cell">Ask a branch</span><span class="via" role="cell">Air</span>
-        </div>
-        <div class="lane" role="row" data-what="big" data-where="ph">
-          <span class="dest" role="cell">Visayas and Mindanao ports</span><span class="svc" role="cell">Sea cargo<small>Heavy and bulky shipments</small></span><span class="eta" role="cell">7-14 days</span><span class="via" role="cell">Sea</span>
-        </div>
-        <div class="lane" role="row" data-what="parcel" data-where="manila ph">
-          <span class="dest" role="cell">Nationwide</span><span class="svc" role="cell">SPX delivery<small>Budget last-mile by Shopee Express</small></span><span class="eta" role="cell">About 7 days</span><span class="via" role="cell">Land</span>
-        </div>
-        <div class="lane" role="row" data-what="docs parcel big" data-where="abroad">
-          <span class="dest" role="cell">220+ countries</span><span class="svc" role="cell">FedEx International Priority<small>Picked up from our branches daily</small></span><span class="eta" role="cell">1-3 business days</span><span class="via" role="cell">FedEx</span>
-        </div>
-        <div class="lane" role="row" data-what="parcel big" data-where="abroad">
-          <span class="dest" role="cell">220+ countries</span><span class="svc" role="cell">FedEx International Economy<small>Big boxes for less, when it can wait</small></span><span class="eta" role="cell">7-14 business days</span><span class="via" role="cell">FedEx</span>
-        </div>
-        <div class="lane" role="row" data-what="docs" data-where="abroad manila">
-          <span class="dest" role="cell">Boards and embassies</span><span class="svc" role="cell">NCLEX and embassy documents<small>Transcripts, credentials and forms</small></span><span class="eta" role="cell">Fully tracked</span><span class="via" role="cell">FedEx</span>
-        </div>
-        <div class="lane" role="row" data-what="luggage" data-where="manila ph abroad">
-          <span class="dest" role="cell">Anywhere</span><span class="svc" role="cell">Luggage shipping<small>Drop your bags, we send them ahead</small></span><span class="eta" role="cell">Ask a branch</span><span class="via" role="cell">Air or sea</span>
-        </div>
-        <div class="lane" role="row" data-what="me" data-where="ph">
-          <span class="dest" role="cell">Bohol, Leyte, Mindanao</span><span class="svc" role="cell">Ferry tickets<small>Booked at the counter with Barkota</small></span><span class="eta" role="cell">Same-day booking</span><span class="via" role="cell">Ferry</span>
+        <p class="also">Also available: airport-to-airport cargo to Davao, Iloilo and CDO, and budget SPX delivery nationwide in about 7 days.</p>
+      </div>
+      <div class="panel" role="tabpanel" id="p-abroad" aria-labelledby="t-abroad" hidden>
+        <div class="svc-grid">
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-airplane-takeoff"></i><span><b>1-3</b>business days</span></div>
+            <h3>FedEx International Priority</h3>
+            <p>The fastest way out of Cebu, to 220+ countries. FedEx picks up from our branches daily.</p>
+            <ul class="good" aria-label="Good for"><li>Documents</li><li>Urgent parcels</li></ul>
+          </article>
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-package"></i><span><b>7-14</b>business days</span></div>
+            <h3>FedEx International Economy</h3>
+            <p>Big boxes and balikbayan loads for less, when it doesn't need to arrive this week.</p>
+            <ul class="good" aria-label="Good for"><li>Big boxes</li><li>Business stock</li></ul>
+          </article>
+          <article class="svc">
+            <div class="svc-time"><i class="ph ph-graduation-cap"></i><span><b>Tracked</b></span></div>
+            <h3>NCLEX and embassy papers</h3>
+            <p>Transcripts, credentials and forms to boards and embassies, packed flat and tracked.</p>
+            <ul class="good" aria-label="Good for"><li>Documents</li></ul>
+          </article>
         </div>
       </div>
-      <div class="board-foot">
-        <p id="boardCount" aria-live="polite">Showing all <b>12</b> services.</p>
-        <a class="btn btn-ghost" href="#contact"><i class="ph ph-chat-circle-text"></i>Message us</a>
+      <div class="picker-foot">
+        <p>Not sure which one? Tell us what's inside and where it's going, and we'll pick the cheapest option that arrives on time.</p>
+        <a class="btn btn-primary" href="#contact"><i class="ph ph-chat-circle-text"></i>Message us</a>
       </div>
     </div>
   </div>
@@ -570,7 +568,6 @@ section{padding:clamp(72px,10vw,128px) 0}
       <article class="p-tile p-ferry rv" id="ferry">
         <h3>Ferry tickets at the counter.</h3>
         <p>Going home for the holidays or island hopping? Skip the port queue. Any branch can book your seat, with schedules and fares from many operators.</p>
-        <span class="via-barkota">Booked through <span class="plate plate-sm"><img src="img/partners/barkota.png" alt="Barkota Ferry Booking" width="640" height="149"></span></span>
         <div class="marquee" role="group" aria-label="Ferry lines we book">
           <div class="marquee-track">
             <span class="logo"><img src="img/partners/supercat.png" alt="SuperCat" width="217" height="72" loading="lazy"></span>
@@ -807,43 +804,21 @@ section{padding:clamp(72px,10vw,128px) 0}
     map.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(t.dataset.map) + '&z=16&hl=en&output=embed';
   }));
 
-  // shipping finder
-  const sel = { what: null, where: null };
-  const lanes = [...document.querySelectorAll('.lane')], count = document.getElementById('boardCount');
-  document.querySelectorAll('[data-filter]').forEach(g => g.addEventListener('click', e => {
-    const b = e.target.closest('.chip'); if (!b) return;
-    const k = g.dataset.filter, on = b.getAttribute('aria-pressed') !== 'true';
-    g.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b && on));
-    sel[k] = on ? b.dataset.v : null;
-    let n = 0;
-    lanes.forEach(l => {
-      const ok = (!sel.what || l.dataset.what.split(' ').includes(sel.what)) && (!sel.where || l.dataset.where.split(' ').includes(sel.where));
-      const any = sel.what || sel.where;
-      l.classList.toggle('off', !ok); l.classList.toggle('hit', ok && any); if (ok) n++;
+  // destination tabs
+  const tabs = [...document.querySelectorAll('[role=tab]')];
+  const pick = t => tabs.forEach(x => {
+    const on = x === t;
+    x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+    document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => pick(t));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+      const n = tabs[(i + d + tabs.length) % tabs.length]; pick(n); n.focus();
     });
-    count.innerHTML = !sel.what && !sel.where ? 'Showing all <b>' + lanes.length + '</b> services.'
-      : n ? '<b>' + n + (n === 1 ? ' way' : ' ways') + '</b> to send it. Message a branch for the rate.'
-      : 'Nothing on the board for that. <b>Message us</b>, we may still have a way.';
-  }));
-
-  // split-flap: destinations shuffle once when the board scrolls into view
-  const board = document.querySelector('.board');
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-    const chars = 'ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';
-    const io = new IntersectionObserver(es => es.forEach(en => {
-      if (!en.isIntersecting) return; io.disconnect();
-      board.querySelectorAll('.dest').forEach((el, i) => {
-        const final = el.textContent; let f = 0; const total = 14 + i * 2;
-        const tick = () => {
-          f++;
-          el.textContent = [...final].map((ch, j) => ch === ' ' || ch === ',' || ch === '+' || ch === '-' || j < (f / total) * final.length ? ch : chars[(Math.random() * chars.length) | 0]).join('');
-          if (f < total) setTimeout(tick, 38); else el.textContent = final;
-        };
-        setTimeout(tick, i * 40);
-      });
-    }), { threshold: .35 });
-    io.observe(board);
-  }
+  });
+  if (location.hash === '#same-day') pick(tabs[0]);
 
   // volumetric weight
   const ids = ['cL', 'cW', 'cH', 'cK'].map(id => document.getElementById(id));
